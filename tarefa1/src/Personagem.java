@@ -22,5 +22,4 @@ public abstract class Personagem {
     }
 
     public abstract void atacar(Personagem alvo);
-    public abstract void usarHabilidadeEspecial(Personagem alvo);
 }

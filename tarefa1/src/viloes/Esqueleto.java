@@ -7,10 +7,7 @@ public class Esqueleto extends Monstro {
     public void atacar(Personagem alvo) {
         System.out.println("Esqueleto atacou com: Bate-Crânio!");
         System.out.println(alvo.nome +"Perdeu"+ this.forca+ "Pontos de vida!");
-    }
-
-    public void usarHabilidadeEspecial(Personagem alvo) {
-        
+        alvo.receberDano(this.forca);
     }
 
 }

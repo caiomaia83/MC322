@@ -19,4 +19,6 @@ public abstract class Heroi extends Personagem {
         System.out.printf("Xp: %d\n", this.experiencia);
     }
 
+    public abstract void usarHabilidadeEspecial(Personagem alvo);
+
 }
