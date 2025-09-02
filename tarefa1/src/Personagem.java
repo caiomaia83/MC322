@@ -7,7 +7,8 @@ public abstract class Personagem {
     public Personagem(String nome, int pontosDeVidaTotal, int forca) {
         this.forca = forca;
         this.nome = nome;
-        this.pontosDeVida = this.pontosDeVidaTotal = pontosDeVidaTotal;
+        this.pontosDeVida =  pontosDeVidaTotal;
+        this.pontosDeVidaTotal = pontosDeVidaTotal;
     }
 
     public void receberDano(int dano) {
@@ -20,5 +21,5 @@ public abstract class Personagem {
         System.out.printf("Forca: %d\n", this.forca);
     }
 
-    public abstract int atacar();
+    public abstract void atacar(Personagem alvo);
 }
