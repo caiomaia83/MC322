@@ -1,12 +1,15 @@
+/* 
+package Fases;
 import java.util.ArrayList;
 import java.util.List;
+import Monstros.Monstro;
 
 public class Fase {
     private int nivel;
     private String ambiente;
     private List<Monstro> monstros;
 
-    /**
+
      * Construtor da Fase.
      * Inicializa os atributos e aplica o aumento de dificuldade nos monstros
      * com base no nível da fase.
@@ -14,7 +17,7 @@ public class Fase {
      * @param nivel O nível da fase.
      * @param ambiente A descrição do cenário da fase.
      * @param monstrosBase A lista de monstros com seus status originais.
-     */
+    
     public Fase(int nivel, String ambiente, List<Monstro> monstrosBase) {
         this.nivel = nivel;
         this.ambiente = ambiente;
@@ -39,9 +42,9 @@ public class Fase {
         }
     }
 
-    /**
-     * Método para iniciar e exibir as informações da fase.
-     */
+    
+      Método para iniciar e exibir as informações da fase.
+    
     public void iniciar() {
         System.out.println("--- Bem-vindo à Fase " + this.nivel + " ---");
         System.out.println("Cenário: " + this.ambiente);
@@ -51,5 +54,5 @@ public class Fase {
             monstro.exibirStatus();
         }
         System.out.println("------------------------------------");
-    }//
-}
+    }
+} */
