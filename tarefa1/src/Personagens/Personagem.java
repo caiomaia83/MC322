@@ -1,11 +1,16 @@
 package Personagens;
+
+import Armas.Arma;
+
 public abstract class Personagem {
     private String nome;
     protected int pontosDeVida;
     protected int pontosDeVidaTotal; // Guarda o hp total 
     private int forca;
+    protected Arma arma;
+    
 
-    public Personagem(String nome, int pontosDeVidaTotal, int forca) {
+    public Personagem(String nome, int pontosDeVidaTotal, int forca, Arma arma) {
         this.forca = forca;
         this.nome = nome;
         this.pontosDeVida =  pontosDeVidaTotal;
@@ -27,6 +32,7 @@ public abstract class Personagem {
     public void exibirStatus() {
         System.out.printf(" -- Status de %s --\n", this.nome);
         System.out.printf("HP: %d / %d\n", this.pontosDeVida, this.pontosDeVidaTotal);
+        System.out.printf("Arma: %s \n", this.arma.getNome());
         System.out.printf("Forca: %d\n", this.forca);
     }
 
@@ -44,6 +50,14 @@ public abstract class Personagem {
 
     public int getForca() {
         return this.forca;
+    }
+
+    public String getArma() {
+        return this.arma.getNome();
+    }
+
+    protected void MudarArma(Arma novaArma) {
+
     }
 
     public abstract void atacar(Personagem alvo);
