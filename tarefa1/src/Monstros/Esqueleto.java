@@ -3,6 +3,7 @@ package Monstros;
 import Personagens.Monstro;
 import Personagens.Personagem;
 
+/* Monstro não-aéreo mais básico */
 public class Esqueleto extends Monstro {
     
     public Esqueleto(String nome, int pontosDeVida, int forca, int xpconcedido) {

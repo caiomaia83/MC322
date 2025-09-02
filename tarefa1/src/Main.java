@@ -8,7 +8,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        // --- 1. CRIAÇÃO DOS PERSONAGENS ---
+        //  CRIAÇÃO DOS PERSONAGENS 
         Barbaro heroi = new Barbaro("barbaro", 100, 15, 1, 0);
         Monstro[] monstros = {
             new Servos("Servos", 30, 8,5),
@@ -16,7 +16,7 @@ public class Main {
             new Corredor("Hog Rider", 70, 12, 20, 20)
         };
 
-        // --- 2. APRESENTAÇÃO DO DESAFIO ---
+        //  APRESENTAÇÃO DO DESAFIO 
         System.out.println("=====================================================");
         System.out.println("  O DESAFIO DA MASMORRA DOS TRÊS TERRORES");
         System.out.println("=====================================================");
@@ -26,7 +26,7 @@ public class Main {
         heroi.exibirStatus();
         System.out.println("---------------------------------");
 
-        // --- 3. SIMULAÇÃO DOS TURNOS EM LOOP ---
+        //  SIMULAÇÃO DOS TURNOS EM LOOP 
         for (int i = 0; i < monstros.length; i++) {
             Monstro monstroAtual = monstros[i];
             
@@ -54,7 +54,7 @@ public class Main {
 
             // Se o herói morreu, o desafio acaba
             if (!heroi.estaVivo()) {
-                break; // Interrompe o loop principal dos turnos
+                break; 
             }
 
             // Exibição de status no final do encontro
@@ -63,7 +63,7 @@ public class Main {
             System.out.println("---------------------------------");
         }
 
-        // --- 4. CONCLUSÃO DO DESAFIO ---
+        //  CONCLUSÃO DO DESAFIO 
         System.out.println("\n=====================================================");
         if (heroi.estaVivo()) {
             System.out.println("  VITÓRIA! " + heroi.getNome() + " sobreviveu aos horrores da masmorra!");
