@@ -2,6 +2,8 @@ import Personagens.*;
 import Herois.*;
 import Monstros.*;
 
+import java.util.Random;
+
 
 
 public class Main {
@@ -24,15 +26,15 @@ public class Main {
         //scanner.close();
         */
 
-        // --- 1. CRIAÇÃO DOS PERSONAGENS ---
+        //  CRIAÇÃO DOS PERSONAGENS 
         Barbaro heroi = new Barbaro("barbaro", 100, 15, 1, 0);
         Monstro[] monstros = {
             new Servos("Servos", 30, 8,5),
             new Esqueleto("Esqueleto Guerreiro", 50, 10, 5),
-            new Corredor("Hog Rider", 70, 12, 20, 20)
+            new Corredor("Hog Rider", 70, 20, 20, 20)
         };
 
-        // --- 2. APRESENTAÇÃO DO DESAFIO ---
+        //  APRESENTAÇÃO DO DESAFIO 
         System.out.println("=====================================================");
         System.out.println("  O DESAFIO DA MASMORRA DOS TRÊS TERRORES");
         System.out.println("=====================================================");
@@ -42,7 +44,7 @@ public class Main {
         heroi.exibirStatus();
         System.out.println("---------------------------------");
 
-        // --- 3. SIMULAÇÃO DOS TURNOS EM LOOP ---
+        //  SIMULAÇÃO DOS TURNOS EM LOOP 
         for (int i = 0; i < monstros.length; i++) {
             Monstro monstroAtual = monstros[i];
             
@@ -52,7 +54,13 @@ public class Main {
             // O combate acontece enquanto ambos estiverem vivos
             while (heroi.estaVivo() && monstroAtual.estaVivo()) {
                 System.out.println("\n--- Ação do Herói ---");
-                heroi.atacar(monstroAtual);
+                // O heroi tem uma chance aleatoria de usar seu ataque especial
+                Random random = new Random(); 
+                if(random.nextInt(100) > 80) {
+                    heroi.usarHabilidadeEspecial(monstroAtual);
+                } else {
+                    heroi.atacar(monstroAtual);
+                }
 
                 // O monstro só ataca de volta se ainda estiver vivo
                 if (monstroAtual.estaVivo()) {
@@ -80,7 +88,7 @@ public class Main {
             System.out.println("---------------------------------");
         }
 
-        // --- 4. CONCLUSÃO DO DESAFIO ---
+        //  CONCLUSÃO DO DESAFIO 
         System.out.println("\n=====================================================");
         if (heroi.estaVivo()) {
             System.out.println("  VITÓRIA! " + heroi.getNome() + " sobreviveu aos horrores da masmorra!");

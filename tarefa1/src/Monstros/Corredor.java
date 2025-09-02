@@ -31,7 +31,7 @@ public class Corredor extends Monstro {
         // Ou seja, um Corredor com velocidade 30 tem 30% de chance de atacar duas vezes.
         if (random.nextInt(100) < this.velocidade) {
             System.out.println("A velocidade de " + this.getNome() + " permite um segundo ataque!");
-           alvo.receberDano( (int) Math.round(this.getForca() / 1.25) );
+           alvo.receberDano( this.getForca());
         }
     }
 }
