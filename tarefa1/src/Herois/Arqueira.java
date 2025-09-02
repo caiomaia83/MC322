@@ -13,24 +13,24 @@ public  class Arqueira extends Heroi {
 
 
     public void atacar(Personagem alvo) {
-        System.out.println(this.nome +"atacou com: Flecha Perfurante!");
+        System.out.println(this.getNome() +"atacou com: Flecha Perfurante!");
 
         int dano; 
         
         Random random = new Random();
         if((random.nextInt(100) + this.precisao) >= 100) {
-            dano = this.forca + 50;
+            dano = this.getForca() + 50;
             alvo.receberDano(dano);
-            System.out.println(this.nome + "acertou um golpe preciso e causou dano crítico!");
+            System.out.println(this.getNome() + "acertou um golpe preciso e causou dano crítico!");
         } else {
-            dano = this.forca;
+            dano = this.getForca();
             alvo.receberDano(dano);
         }
     }
 
     public void usarHabilidadeEspecial(Personagem alvo) {
-        System.out.println(this.nome+ "usou a habilidade: Olhos de àguia!");
-        System.out.println("A precisao de "+this.nome+"aumentou consideravelmente.");
+        System.out.println(this.getNome()+ "usou a habilidade: Olhos de àguia!");
+        System.out.println("A precisao de "+this.getNome()+"aumentou consideravelmente.");
         this.alcance += 10;
         this.precisao += 30;
         atacar(alvo);
@@ -40,7 +40,7 @@ public  class Arqueira extends Heroi {
     public void receberDano(int dano) {
         Random random = new Random();
         if((random.nextInt(50) + this.alcance) >= 50) {
-            System.out.println(this.nome + "conseguiu manter a distância e evadiu o ataque!");
+            System.out.println(this.getNome() + "conseguiu manter a distância e evadiu o ataque!");
         } else {
             this.pontosDeVida -= dano;
         }

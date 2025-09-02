@@ -17,16 +17,16 @@ public class Corredor extends Monstro {
     
     @Override
     public void atacar(Personagem alvo) {
-        System.out.println(this.nome + " avança rapidamente montado em seu porco e golpeia com seu poderoso martelo!");
-        alvo.receberDano(this.forca);
+        System.out.println(this.getNome() + " avança rapidamente montado em seu porco e golpeia com seu poderoso martelo!");
+        alvo.receberDano(this.getForca());
 
         // esse monstro pode atacar duas vezes devido a sua imensa agilidade
         Random random = new Random();
         // Gera um número aleatório de 0 a 99. Se for menor que a velocidade, ataca de novo.
         // Ou seja, um Corredor com velocidade 30 tem 30% de chance de atacar duas vezes.
         if (random.nextInt(100) < this.velocidade) {
-            System.out.println("A velocidade de " + this.nome + " permite um segundo ataque!");
-            alvo.receberDano(this.forca);
+            System.out.println("A velocidade de " + this.getNome() + " permite um segundo ataque!");
+            alvo.receberDano(this.getForca());
         }
     }
 }

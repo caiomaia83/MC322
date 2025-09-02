@@ -6,24 +6,24 @@ public class Barbaro extends Heroi {
     }
 
     public void atacar(Personagem alvo) {
-        System.out.println(this.nome + "ataca com: Ataque Desvairado!");
+        System.out.println(this.getNome() + "ataca com: Ataque Desvairado!");
         
         int dano; 
         
         if(this.furia) {
-            dano = this.forca + 30;
+            dano = this.getForca() + 30;
             alvo.receberDano(dano);
         } else {
-            dano = this.forca;
-            alvo.receberDano(forca);
+            dano = this.getForca();
+            alvo.receberDano(getForca());
         }
 
-        System.out.printf(alvo.nome + "Recebeu %d de Dano! \n", this.forca);
+        System.out.printf(alvo.getNome() + "Recebeu %d de Dano! \n", this.getForca());
     }
 
     public void usarHabilidadeEspecial(Personagem alvo) { // Aumenta a forca de ataque do Bárbaro
-        System.out.println(this.nome + "tomou um gole de elixir e se tornou furioso!");
-        System.out.println("Os pontos de força de  "+this.nome+"aumentaram consideravelmente!");
+        System.out.println(this.getNome() + "tomou um gole de elixir e se tornou furioso!");
+        System.out.println("Os pontos de força de  "+this.getNome()+"aumentaram consideravelmente!");
         this.furia = true;
         atacar(alvo);
     }
