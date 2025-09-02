@@ -22,7 +22,7 @@ public class Barbaro extends Heroi {
     }
 
     public void usarHabilidadeEspecial(Personagem alvo) { // Aumenta a forca de ataque do Bárbaro
-        System.out.println(this.getNome() + "tomou um gole de elixir e se tornou furioso!");
+        System.out.println(this.getNome() + "tomou um gole de elixir e entra em fúria!");
         System.out.println("Os pontos de força de  "+this.getNome()+"aumentaram consideravelmente!");
         this.furia = true;
         atacar(alvo);
