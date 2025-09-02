@@ -1,4 +1,9 @@
+package Herois;
+
 import java.util.Random;
+
+import Personagens.Heroi;
+import Personagens.Personagem;
 
 public  class Arqueira extends Heroi {
     int precisao;
@@ -42,7 +47,7 @@ public  class Arqueira extends Heroi {
         if((random.nextInt(50) + this.alcance) >= 50) {
             System.out.println(this.getNome() + "conseguiu manter a distância e evadiu o ataque!");
         } else {
-            this.pontosDeVida -= dano;
+            super.receberDano(dano);
         }
     }
 }

@@ -1,3 +1,4 @@
+package Personagens;
 public abstract class Monstro extends Personagem {
 
     int xpConcedido;

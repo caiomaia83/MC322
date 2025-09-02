@@ -1,6 +1,9 @@
-
+package Monstros;
 
 import java.util.Random;
+
+import Personagens.Monstro;
+import Personagens.Personagem;
 
 public class Servos extends Monstro {
     private Boolean arranhao;

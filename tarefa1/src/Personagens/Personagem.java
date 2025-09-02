@@ -1,8 +1,9 @@
+package Personagens;
 public abstract class Personagem {
     private String nome;
     protected int pontosDeVida;
     protected int pontosDeVidaTotal; // Guarda o hp total 
-    protected int forca;
+    private int forca;
 
     public Personagem(String nome, int pontosDeVidaTotal, int forca) {
         this.forca = forca;

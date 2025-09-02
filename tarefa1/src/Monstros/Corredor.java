@@ -1,4 +1,9 @@
+package Monstros;
+
 import java.util.Random;
+
+import Personagens.Monstro;
+import Personagens.Personagem;
 
 // Corredor é uma classe concreta que herda da classe abstrata Monstro
 public class Corredor extends Monstro {

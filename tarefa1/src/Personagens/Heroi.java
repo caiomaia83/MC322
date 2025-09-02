@@ -1,3 +1,5 @@
+package Personagens;
+
 public abstract class Heroi extends Personagem {
     private int nivel;
     private int experiencia;

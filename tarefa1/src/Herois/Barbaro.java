@@ -1,8 +1,14 @@
+package Herois;
+
+import Personagens.Heroi;
+import Personagens.Personagem;
+
 public class Barbaro extends Heroi {
     Boolean furia;
     
-    public Barbaro(String nome, int pontosDeVida, int pontosDeVidaTotal, int forca, int nivel, int experiencia, Boolean furia) {
+    public Barbaro(String nome, int pontosDeVida, int forca, int nivel, int experiencia) {
         super(nome, pontosDeVida, forca, nivel, experiencia);
+        this.furia = false;
     }
 
     public void atacar(Personagem alvo) {
