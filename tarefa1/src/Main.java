@@ -8,6 +8,22 @@ public class Main {
 
     public static void main(String[] args) {
 
+
+        /* sessao de bloco comentada pois nao devemos receber entrada do usuario ainda
+        
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Escolha qual herói voce quer utilizar ! Pressione 1 para bárbaro ou 2 para arqueira");
+        int escolhaHeroi = scanner.nextInt();   
+        
+        if(escolhaHeroi == 1){
+            Barbaro heroi = new Barbaro("barbaro", 100, 15, 1, 0);
+        } else if (escolhaHeroi == 2){
+            Arqueira heroi = new Arqueira("arqueira", 80, 10, 1, 0, 5);
+        } 
+        
+        //scanner.close();
+        */
+
         // --- 1. CRIAÇÃO DOS PERSONAGENS ---
         Barbaro heroi = new Barbaro("barbaro", 100, 15, 1, 0);
         Monstro[] monstros = {
