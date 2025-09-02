@@ -10,8 +10,8 @@ public abstract class Heroi extends Personagem {
         this.experiencia = experiencia;
     }
 
-    public void ganharExperiencia(int xp) {
-        this.experiencia += xp;
+    public void ganharExperiencia(Monstro alvo) {
+        this.experiencia += alvo.xpConcedido;
     }
 
     @Override

@@ -36,7 +36,7 @@ public class Main {
         System.out.println("=====================================================");
         System.out.println("  O DESAFIO DA MASMORRA DOS TRÊS TERRORES");
         System.out.println("=====================================================");
-        System.out.println(heroi.getNome() + ", um nobre cavaleiro, adentra a escuridão para provar seu valor.");
+        System.out.println(heroi.getNome() + ", um corajoso aventureiro, adentra a escuridão para provar seu valor.");
         System.out.println("Ele deve sobreviver a três encontros para clamar a glória!");
         System.out.println("\n--- STATUS INICIAL DO HERÓI ---");
         heroi.exibirStatus();
@@ -60,6 +60,7 @@ public class Main {
                     monstroAtual.atacar(heroi);
                 } else {
                     System.out.println("   O " + monstroAtual.getNome() + " foi derrotado!");
+                    heroi.ganharExperiencia(monstroAtual);
                 }
 
                 // Verificação de sobrevivência do herói

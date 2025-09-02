@@ -5,6 +5,7 @@ import java.util.Random;
 import Personagens.Monstro;
 import Personagens.Personagem;
 
+/* Monstro aéreo mais básico do jogo */
 public class Servos extends Monstro {
     private Boolean arranhao;
 

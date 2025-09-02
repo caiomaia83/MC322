@@ -12,7 +12,7 @@ public class Barbaro extends Heroi {
     }
 
     public void atacar(Personagem alvo) {
-        System.out.println(this.getNome() + "ataca com: Ataque Desvairado!");
+        System.out.println(this.getNome() + " ataca com: Ataque Desvairado!");
         
         int dano; 
         
@@ -24,7 +24,7 @@ public class Barbaro extends Heroi {
             alvo.receberDano(getForca());
         }
 
-        System.out.printf(alvo.getNome() + "Recebeu %d de Dano! \n", this.getForca());
+        System.out.printf(alvo.getNome() + " recebeu %d de Dano! \n", this.getForca());
     }
 
     public void usarHabilidadeEspecial(Personagem alvo) { // Aumenta a forca de ataque do Bárbaro
