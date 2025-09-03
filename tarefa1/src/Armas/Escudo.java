@@ -5,18 +5,20 @@ public class Escudo {
     
     private String nome;
     private float chanceDeBloqueio; // Chance de bloquear totalmente o ataque 
-    private int DurabilidadeAtual;
-    private int DurabilidadeTotal;
+    private int durabilidadeAtual;
+    private int durabilidadeTotal;
     private int ReducaoDeDano; // O escudo sempre reduz em algum nível o dano 
 
-    public Escudo(float chanceDeBloqueio, int DurabilidadeTotal) {
+    public Escudo(String nome, float chanceDeBloqueio, int durabilidadeTotal, int ReducaoDeDano) {
+        this.nome = nome;
         this.chanceDeBloqueio = chanceDeBloqueio;
-        this.DurabilidadeAtual = DurabilidadeTotal;
-        this.DurabilidadeTotal = DurabilidadeTotal;
+        this.durabilidadeAtual = durabilidadeTotal;
+        this.durabilidadeTotal = durabilidadeTotal;
+        this.ReducaoDeDano = ReducaoDeDano;
     }
 
     public boolean estaQuebrado() {
-        return this.DurabilidadeAtual <= 0;
+        return this.durabilidadeAtual <= 0;
     }
 
     public String getNome() {
@@ -24,11 +26,11 @@ public class Escudo {
     } 
 
     public int getDurabilidadeAtual() {
-        return this.DurabilidadeAtual;
+        return this.durabilidadeAtual;
     }
 
     public int getDurabilidadeTotal() {
-        return this.DurabilidadeTotal;
+        return this.durabilidadeTotal;
     }
 
     public float getChanceDeBloqueio() {
@@ -41,22 +43,12 @@ public class Escudo {
 
     // Função para quando o escudo absorve dano 
     public void consumirDurabilidade(int quantidade) {
-        this.DurabilidadeAtual -= quantidade;
+        this.durabilidadeAtual -= quantidade;
 
-        if(this.DurabilidadeAtual <= 0) {
-            System.out.println("O escudo" + this.nome + "quebrou!");
+        if(this.durabilidadeAtual <= 0) {
+            System.out.println("O " + this.nome + "quebrou!");
         }
     }
 
-    public float calculaSorteEscudo(float FATOR_SORTE, float sorte, float CHANCE_LIMITE) {
-        float bonusDeSorte = sorte*FATOR_SORTE;
-        float chanceDeBloqueioFinal = this.getChanceDeBloqueio() + bonusDeSorte;
-
-        chanceDeBloqueioFinal = Math.min(chanceDeBloqueioFinal, CHANCE_LIMITE); // A chance nunca ultrapassa 85%
-
-        // Imprime uma mensagem 
-        System.out.printf("Chance de bloqueio: %d % ...", chanceDeBloqueioFinal*100);
-        return chanceDeBloqueioFinal;
-    }
 
 }

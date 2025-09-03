@@ -18,7 +18,7 @@ public class Servos extends Monstro {
     @Override
     public void atacar(Personagem alvo) {
         System.out.println(this.getNome() + " 3 servos raivosos avançam pelos ares!");
-        alvo.receberDano(this.getForca());
+        alvo.receberDano(this.getDano());
 
         // esse monstro ṕode cegar o alvo temporariamente com suas garras afiadas
         Random random = new Random();

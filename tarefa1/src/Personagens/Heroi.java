@@ -49,7 +49,7 @@ public abstract class Heroi extends Personagem {
 
 
     // Equipa uma nova arma
-    protected void equiparArma(Arma novaArma) {
+    public void equiparArma(Arma novaArma) {
         // Verifica se o heroi possui nivel suficiente para a arma
         if(this.nivel >= novaArma.getMinNivel()) {
             System.out.println("Você equipou: " +  novaArma.getNome() + "!");

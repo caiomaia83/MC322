@@ -5,6 +5,7 @@ import java.util.Random;
 import Personagens.Heroi;
 import Personagens.Personagem;
 import Armas.Escudo;
+import Armas.Herois.RecrutasReais.EscudoDeMadeira;
 import Armas.Herois.RecrutasReais.LancaDeTreinamento;
 
 
@@ -20,6 +21,7 @@ public class RecrutaReal extends Heroi {
         super(nome, pontosDeVidaTotal, forca, new LancaDeTreinamento()) ;
         this.investida = false;
 
+        this.escudoEquipado = new EscudoDeMadeira();
     }
 
     public void equiparEscudo(Escudo escudo) {
@@ -35,19 +37,26 @@ public class RecrutaReal extends Heroi {
         if(this.escudoEquipado != null && !this.escudoEquipado.estaQuebrado()) {
 
             // Lógica da sorte
-            float chanceDeBloqueioFinal = escudoEquipado.calculaSorteEscudo(0.20f, this.getSorte(), 0.6f);
+            float FATOR_SORTE = 0.10f;
+            float bonusDeSorte = this.getSorte()*FATOR_SORTE;
+            float chanceDeBloqueioFinal = this.escudoEquipado.getChanceDeBloqueio() + bonusDeSorte;
+
+            chanceDeBloqueioFinal = Math.min(chanceDeBloqueioFinal, 0.6f); // A chance nunca ultrapassa 60%
+
+            // Imprime uma mensagem 
+            System.out.printf("Chance de bloqueio: %.0f %% \n", chanceDeBloqueioFinal*100);
 
             // Verifica se o conseguiu realizar um bloqueio perfeito  
             if(random.nextFloat() <= chanceDeBloqueioFinal) {
-                System.out.println(this.getNome() + " realizou um bloqueio perfeito com" + this.escudoEquipado + "!");
+                System.out.println(this.getNome() + " realizou um bloqueio perfeito com" + this.escudoEquipado.getNome() + "!");
                 danoFinal = 0;
                 // Bloqueio perfeito consome mais durabilidade 
-                escudoEquipado.consumirDurabilidade(2);
+                this.escudoEquipado.consumirDurabilidade(2);
 
             } else {
                 System.out.println(escudoEquipado.getNome() + " absorveu parte do dano.");
                 danoFinal = Math.max(0, dano - escudoEquipado.getReducaoDeDano());
-                escudoEquipado.consumirDurabilidade(1);
+                this.escudoEquipado.consumirDurabilidade(1);
             }
         } 
 
@@ -61,9 +70,10 @@ public class RecrutaReal extends Heroi {
         
         // Caso ele esteja com a investida ativada 
         if(this.investida) {
-            dano = (int) (this.getDano()*(1 + this.getSorte()) );
+            dano = (int) (this.getDano()*(1.5 + this.getSorte()) );
             System.out.println(this.getNome() + " atacou com Investida Real e causou dano crítico!");
             alvo.receberDano(dano);
+            
 
             // A investida só dura por um ataque 
             this.investida = false;
@@ -77,7 +87,7 @@ public class RecrutaReal extends Heroi {
     // A habilidade especial do recruta real ativa sua investida 
     // Como a chance de conseguir é alta, caso dê errado o negativo é maior
     public void usarHabilidadeEspecial(Personagem alvo) {
-        if(this.getSorte() >= 0.25) {
+        if(this.getSorte() >= 0.15) {
             System.out.println(this.getNome() + " entrou em investida!");
             this.investida = true;
             this.atacar(alvo);

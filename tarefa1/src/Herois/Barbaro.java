@@ -8,7 +8,7 @@ public class Barbaro extends Heroi {
     Boolean furia;
     Boolean berserker; // Como que uma "super fúria"
     
-    public Barbaro(String nome, int pontosDeVida, int forca, int nivel, int experiencia) {
+    public Barbaro(String nome, int pontosDeVida, int forca) {
         super(nome, pontosDeVida, forca,  new CuteloDeCaça()); // Cutelo de Caça é a espada inicial padrão dos bárbaros
         this.furia = false;
         this.berserker = false;
@@ -33,8 +33,6 @@ public class Barbaro extends Heroi {
             dano = this.getDano();
             alvo.receberDano(getDano());
         }
-
-        System.out.printf(alvo.getNome() + " recebeu %d de Dano! \n", dano);
     }
 
     public void usarHabilidadeEspecial(Personagem alvo) { // Aumenta a forca de ataque do Bárbaro
@@ -42,8 +40,7 @@ public class Barbaro extends Heroi {
         // Em caso de sorte, a fúria da um aumento mais significativo ao bárbaro e o torna um berserker
         if(this.getSorte() >= 0.88f ) {
             System.out.printf("O elixir desperta uma fúria primal em %s!!!\n", this.getNome());
-            System.out.println("----STATUS ATIVADO: Berserker----");
-            System.out.println(this.getNome() + "está imparável!");
+            System.out.println(this.getNome() + " está imparável!");
             this.berserker = true;
         } else { // Caso padrão 
             System.out.println("Os pontos de força de  "+this.getNome()+" aumentaram consideravelmente!");

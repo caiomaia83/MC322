@@ -4,6 +4,8 @@ import Monstros.*;
 
 import java.util.Random;
 
+import Armas.Monstros.Corredor.DemolidorDeTorres;
+
 
 
 public class Main {
@@ -27,7 +29,7 @@ public class Main {
         */
 
         //  CRIAÇÃO DOS PERSONAGENS 
-        Barbaro heroi = new Barbaro("barbaro", 100, 15, 1, 0);
+        RecrutaReal heroi = new RecrutaReal("joao", 100, 15);
         Monstro[] monstros = {
             new Servos("Servos", 30, 8,5),
             new Esqueleto("Esqueleto Guerreiro", 50, 10, 5),
@@ -42,6 +44,7 @@ public class Main {
         System.out.println("Ele deve sobreviver a três encontros para clamar a glória!");
         System.out.println("\n--- STATUS INICIAL DO HERÓI ---");
         heroi.exibirStatus();
+        heroi.exibirStatusArma();
         System.out.println("---------------------------------");
 
         //  SIMULAÇÃO DOS TURNOS EM LOOP 

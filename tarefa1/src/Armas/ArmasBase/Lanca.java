@@ -2,7 +2,7 @@ package Armas.ArmasBase;
 
 import Armas.Arma;
 
-public abstract class Lanca extends Arma {
+public class Lanca extends Arma {
     
     Boolean golpePerfurante; // Atributo único das lanças, permite um ataque crítico que ignora defesa 
 
