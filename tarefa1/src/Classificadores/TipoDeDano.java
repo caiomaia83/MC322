@@ -1,4 +1,4 @@
-package Armas;
+package Classificadores;
 
 public enum TipoDeDano {
     CORTE,

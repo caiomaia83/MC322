@@ -1,5 +1,7 @@
 package Armas;
 
+import Classificadores.Raridade;
+
 public abstract class Arma {
     // Atributos essenciais
     private String nome;
@@ -7,12 +9,15 @@ public abstract class Arma {
     private int minNivel;
     
     // Atributos de combate
-    private int alcance;
+    private float alcance;
     private float velocidadeDeAtaque;
-    private float chanceDeCritico;
+    // TO DO : implementar mecanica de golpe critico para arma e tipo de dano 
+    /*private float chanceDeCritico;
     private float multiplicadorDeCritico;
-    private TipoDeDano tipoDeDano;
+    private TipoDeDano tipoDeDano; */
+    private Raridade raridade;
     private int dano;
+
 
 
     public Arma(String nome, int minNivel, int dano, float velocidadeDeAtaque) {
@@ -20,11 +25,10 @@ public abstract class Arma {
         this.dano = dano;
         this.minNivel = minNivel;
         this.velocidadeDeAtaque = velocidadeDeAtaque;
+        this.alcance = 0f; // Alcance por padrão é zero (corpo a corpo)
         
         // Valores padroes
         this.descricao = "Uma arma básica para ser usada em combate corpo a corpo.";
-        this.chanceDeCritico = 0.05f;
-        this.multiplicadorDeCritico = 1.2f;
     }
 
     public int getDano() {
@@ -43,7 +47,11 @@ public abstract class Arma {
         return this.descricao;
     }
 
-    public int getAlcance() {
+    protected void setDescricao(String descricao) {
+        this.descricao = descricao; 
+    }
+
+    public float getAlcance() {
         return this.alcance;
     }
 
@@ -52,14 +60,19 @@ public abstract class Arma {
     }
 
 
-    protected void setAlcance(int alcance) {
+    protected void setAlcance(float alcance) {
         this.alcance = alcance;
+    }
+
+    public Raridade getRaridade() {
+        return this.raridade;
+    }
+
+    protected void setRaridade(Raridade raridade) {
+        this.raridade = raridade;
     }
 
     protected void setNome(String nome) {
         this.nome = nome;
     }
-
-    // Parametro abstrato que modifica como os parametros da arma aumentam ao mudar de nivel
-    protected abstract void aumentaAtributos();
 }

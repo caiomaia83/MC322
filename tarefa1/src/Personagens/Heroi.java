@@ -1,5 +1,6 @@
 package Personagens;
 import Armas.Arma;
+import java.util.Random;
 
 public abstract class Heroi extends Personagem {
     private int nivel;
@@ -7,12 +8,12 @@ public abstract class Heroi extends Personagem {
     private int expProximoNivel;
     private float sorte;
 
-    public Heroi(String nome, int pontosDeVidaTotal, int forca, Arma arma, int nivel, int experiencia) {
+    public Heroi(String nome, int pontosDeVidaTotal, int forca, Arma arma) {
         super(nome, pontosDeVidaTotal, forca, arma);
-        this.nivel = nivel;
-        this.experiencia = experiencia;
+        this.nivel = 1;
+        this.experiencia = 0;
         this.expProximoNivel = 100;
-        this.sorte = 0f;
+        this.sorte = 0.0f;
     }
 
     public void ganharExperiencia(Monstro alvo) {
@@ -53,13 +54,19 @@ public abstract class Heroi extends Personagem {
         if(this.nivel >= novaArma.getMinNivel()) {
             System.out.println("Você equipou: " +  novaArma.getNome() + "!");
             this.arma = novaArma;
-            System.out.println("Descricao:" + this.getDescricaoArma());
         } else {
-            System.out.println("Você não tem nível suficiente para equipar essa arma...")
+            System.out.println("Você não tem nível suficiente para equipar essa arma...");
         }
     }
 
+    // O getter da sorte é único na medida que ele muda toda vez que é chamado
+    public float getSorte() {
+        Random random = new Random();
+        this.sorte = random.nextFloat(1.0f);
+        return this.sorte;
+    }
 
+    // optei por fazer o aumento de nível individual á cada tipo de herói
     protected abstract void aumentaAtributos();
 
     public abstract void usarHabilidadeEspecial(Personagem alvo);

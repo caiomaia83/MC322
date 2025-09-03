@@ -2,6 +2,7 @@ package Monstros;
 
 import java.util.Random;
 
+import Armas.Monstros.Corredor.DemolidorDeTorres;
 import Personagens.Monstro;
 import Personagens.Personagem;
 
@@ -14,7 +15,7 @@ public class Corredor extends Monstro {
     // Construtor do Corredor
     public Corredor(String nome, int pontosDeVida, int forca, int xpConcedido, int velocidade) {
         // constroi a classe pai
-        super(nome, pontosDeVida, forca, xpConcedido);
+        super(nome, pontosDeVida, forca, xpConcedido, new DemolidorDeTorres());
         //inicializa att proprio
         this.velocidade = velocidade;
     }

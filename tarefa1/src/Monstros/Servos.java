@@ -2,6 +2,7 @@ package Monstros;
 
 import java.util.Random;
 
+import Armas.Monstros.Servos.Comum.GarraDeServo;
 import Personagens.Monstro;
 import Personagens.Personagem;
 
@@ -10,7 +11,7 @@ public class Servos extends Monstro {
     private Boolean arranhao;
 
     public Servos(String nome, int pontosDeVida, int forca, int xpConcedido) {
-        super(nome, pontosDeVida, forca, xpConcedido);
+        super(nome, pontosDeVida, forca, xpConcedido, new GarraDeServo());
         this.arranhao = false;
     }
 
