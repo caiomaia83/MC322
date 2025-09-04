@@ -1,6 +1,7 @@
 package Personagens;
-import Armas.Arma;
 import java.util.Random;
+
+import Itens.Armas.Arma;
 
 public abstract class Heroi extends Personagem {
     private int nivel;
@@ -17,7 +18,7 @@ public abstract class Heroi extends Personagem {
     }
 
     public void ganharExperiencia(Monstro alvo) {
-        this.experiencia += alvo.xpConcedido;
+        this.experiencia += alvo.getXpConcedido();
         this.subirDeNivel();
     }
 

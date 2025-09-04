@@ -1,6 +1,6 @@
 package Personagens;
 
-import Armas.Arma;
+import Itens.Armas.Arma;
 
 public abstract class Personagem {
     private String nome;

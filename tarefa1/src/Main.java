@@ -1,10 +1,8 @@
 import Personagens.*;
-import Herois.*;
-import Monstros.*;
+import Personagens.Herois.*;
+import Personagens.Monstros.*;
 
 import java.util.Random;
-
-import Armas.Monstros.Corredor.DemolidorDeTorres;
 
 
 
@@ -31,9 +29,9 @@ public class Main {
         //  CRIAÇÃO DOS PERSONAGENS 
         RecrutaReal heroi = new RecrutaReal("joao", 100, 15);
         Monstro[] monstros = {
-            new Servos("Servos", 30, 8,5),
-            new Esqueleto("Esqueleto Guerreiro", 50, 10, 5),
-            new Corredor("Hog Rider", 70, 20, 20, 20)
+            new Servo( 30, 8,5),
+            new Esqueleto( 50, 10, 5),
+            new Corredor(70, 20, 20, 20)
         };
 
         //  APRESENTAÇÃO DO DESAFIO 
@@ -70,7 +68,7 @@ public class Main {
                     System.out.println("\n--- Ação do Monstro ---");
                     monstroAtual.atacar(heroi);
                 } else {
-                    System.out.println("   O " + monstroAtual.getNome() + " foi derrotado!");
+                    System.out.println("O " + monstroAtual.getNome() + " foi derrotado!");
                     heroi.ganharExperiencia(monstroAtual);
                 }
 
