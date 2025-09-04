@@ -7,8 +7,11 @@ import Itens.Item;
 import java.util.List;
 
 // Gerenciador geral de loot para itens
+// A chance de itens raros aumenta com a sorte do jogador 
 public class GerenciadorDeLoot {
-    public static Item sortearItem(List<? extends Item> tabelaDeLoot) {
+    public static Item sortearItem(List<? extends Item> tabelaDeLoot, float sorte) {
+        Random random = new Random();
+        
         if(tabelaDeLoot == null || tabelaDeLoot.isEmpty()) {
             return null;
         }
@@ -20,7 +23,17 @@ public class GerenciadorDeLoot {
         }
 
         // Sorteia um numero aleatorio no limite do peso total dos itens
-        int numeroSorteado = new Random().nextInt(pesoTotal) + 1;
+        int numeroSorteado = random.nextInt(pesoTotal) + 1;
+
+        if(random.nextFloat() <= sorte) {
+            System.out.println("Sorte extra! Maior chance de itens raros..");
+            numeroSorteado *= 2;
+        }
+        
+        // Verifica se está no limite da sorte
+        if(numeroSorteado > pesoTotal) {
+            numeroSorteado = pesoTotal;
+        }
 
         
         int pesoAcumulado = 0;

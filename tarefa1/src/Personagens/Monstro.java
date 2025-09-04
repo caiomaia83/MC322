@@ -5,6 +5,7 @@ import java.util.List;
 import Itens.Armas.Arma;
 import Jogo.Classificadores.OrigemDoItem;
 import Jogo.Loot.ConstrutorDeTabelaDeLoot;
+import Jogo.Loot.GerenciadorDeLoot;
 
 public abstract class Monstro extends Personagem {
 
@@ -46,8 +47,17 @@ public abstract class Monstro extends Personagem {
         return this.origem;
     }
 
-    public Arma largaArma() {
-        System.out.printf("%s soltou %d após ser derrotado!", this.getNome(), this.getNomeArma());
-        return this.arma;
+    public Arma largaArma(float sorteDoJogador) {
+        System.out.println(this.getNome() + " foi derrotado!");
+
+        if(sorteDoJogador <= 0.15) { // Para sorte muito baixa o jogador não ganha nada 
+            System.out.printf("Sorte baixa... %s não deixou cair nada.", this.getNome());
+        }
+        
+        Arma armaSorteada = (Arma) GerenciadorDeLoot.sortearItem(this.listaDearmasParaLargar, sorteDoJogador);
+        
+        System.out.printf("%s deixou cair %d!\n", this.getNome(), armaSorteada.getNome());
+
+        return armaSorteada;
     }
 }
