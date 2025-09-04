@@ -3,13 +3,16 @@ package Jogo.Loot;
 import java.util.Random;
 
 import Itens.Item;
+import Jogo.Classificadores.Raridade;
 
+import java.util.ArrayList;
 import java.util.List;
 
 // Gerenciador geral de loot para itens
 // A chance de itens raros aumenta com a sorte do jogador 
 public class GerenciadorDeLoot {
-    public static Item sortearItem(List<? extends Item> tabelaDeLoot, float sorte) {
+    // Sorteia sem sorte 
+    public static Item sortearItem(List<? extends Item> tabelaDeLoot) {
         Random random = new Random();
         
         if(tabelaDeLoot == null || tabelaDeLoot.isEmpty()) {
@@ -24,16 +27,6 @@ public class GerenciadorDeLoot {
 
         // Sorteia um numero aleatorio no limite do peso total dos itens
         int numeroSorteado = random.nextInt(pesoTotal) + 1;
-
-        if(random.nextFloat() <= sorte) {
-            System.out.println("Sorte extra! Maior chance de itens raros..");
-            numeroSorteado *= 2;
-        }
-        
-        // Verifica se está no limite da sorte
-        if(numeroSorteado > pesoTotal) {
-            numeroSorteado = pesoTotal;
-        }
 
         
         int pesoAcumulado = 0;
@@ -54,6 +47,34 @@ public class GerenciadorDeLoot {
 
         }
         return null; // Nao era pra acontecer 
+    }
+
+    public static Item sortearItemComSorte(List<? extends Item> tabelaDeLoot, float sorteDoJogador) {
+        // A sorte aumenta a chance de "rolar de novo" em uma tabela melhor
+        Random random = new Random();
+        if (random.nextFloat() <= sorteDoJogador) {
+            System.out.println("Sorte extra! Tentando um item de maior raridade...");
+            // Tenta pegar um item raro ou melhor da lista
+            List<Item> itensMelhores = filtrarPorRaridadeMinima(tabelaDeLoot, Raridade.RARO);
+            if (!itensMelhores.isEmpty()) {
+                return sortearItem(itensMelhores); // Sorteia apenas entre os melhores
+            }
+        }
+        
+        // Se a sorte falhar ou não houver itens melhores, faz o sorteio normal
+        return sortearItem(tabelaDeLoot);
+    }
+
+    // Permite filtrar por uma raridade mínima 
+    private static List<Item> filtrarPorRaridadeMinima(List<? extends Item> tabela, Raridade min) {
+        List<Item> filtrada = new ArrayList<>();
+        for (Item item : tabela) {
+            // ordinal() compara a posicao do enum 
+            if (item.getRaridade().ordinal() >= min.ordinal()) {
+                filtrada.add(item);
+            }
+        }
+        return filtrada;
     }
     
 }

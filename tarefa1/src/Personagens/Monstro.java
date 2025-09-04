@@ -54,7 +54,7 @@ public abstract class Monstro extends Personagem {
             System.out.printf("Sorte baixa... %s não deixou cair nada.", this.getNome());
         }
         
-        Arma armaSorteada = (Arma) GerenciadorDeLoot.sortearItem(this.listaDearmasParaLargar, sorteDoJogador);
+        Arma armaSorteada = (Arma) GerenciadorDeLoot.sortearItemComSorte(this.listaDearmasParaLargar, sorteDoJogador);
         
         System.out.printf("%s deixou cair %d!\n", this.getNome(), armaSorteada.getNome());
 
