@@ -1,6 +1,8 @@
 package Fases;
+
 import java.util.ArrayList;
 import java.util.List;
+import Monstros.Monstro;
 
 import Personagens.Monstro;
 
@@ -15,8 +17,6 @@ public class Fase {
         this.monstros = new ArrayList<>(); // Cria uma nova lista para a fase
 
         // Fator de dificuldade: aumenta 15% por nível.
-        // Nível 1 = 1.15, Nível 2 = 1.30, etc.
-        // Usamos (nivel - 1) para que no nível 1 o aumento não seja zero.
         double fatorDificuldade = 1.0 + (0.15 * nivel);
 
         // Itera sobre a lista de monstros base para criar versões mais fortes
