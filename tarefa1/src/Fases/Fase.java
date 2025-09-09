@@ -6,6 +6,8 @@ import java.util.List;
 // Mantenha o import da sua classe Monstro, seja ela Monstros.Monstro ou Personagens.Monstro
 import Monstros.Monstro; 
 
+import Personagens.Monstro;
+
 public class Fase {
     private int nivel;
     private String ambiente;
@@ -47,6 +49,7 @@ public class Fase {
             // A lógica de criação do monstro fortalecido permanece a mesma que antes
             // (seja com `new Monstro(...)` ou com o método `criarVersaoFortalecida`)
             Monstro monstroFortalecido = new Monstro(monstroBase.getNome(), novaVida, novaForca);
+
 
             // Adiciona o monstro fortalecido à lista de monstros da fase
             this.monstros.add(monstroFortalecido);
