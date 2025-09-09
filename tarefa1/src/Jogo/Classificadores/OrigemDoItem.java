@@ -1,0 +1,9 @@
+package Jogo.Classificadores;
+
+// Guarda a origem de cada item para facilitar a manutencao 
+public enum OrigemDoItem {
+    GERAL,
+    ESQUELETO,
+    SERVOS,
+    CORREDOR
+}

@@ -4,20 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 import Monstros.Monstro;
 
+import Personagens.Monstro;
+
 public class Fase {
     private int nivel;
     private String ambiente;
     private List<Monstro> monstros;
 
-    /**
-     * Construtor da Fase.
-     * Inicializa os atributos e aplica o aumento de dificuldade nos monstros
-     * com base no nível da fase.
-     *
-     * @param nivel O nível da fase.
-     * @param ambiente A descrição do cenário da fase.
-     * @param monstrosBase A lista de monstros com seus status originais.
-     */
     public Fase(int nivel, String ambiente, List<Monstro> monstrosBase) {
         this.nivel = nivel;
         this.ambiente = ambiente;
@@ -28,12 +21,8 @@ public class Fase {
 
         // Itera sobre a lista de monstros base para criar versões mais fortes
         for (Monstro monstroBase : monstrosBase) {
-            // Calcula os novos atributos
-            int novaVida = (int) (monstroBase.getPontosVida() * fatorDificuldade);
-            int novaForca = (int) (monstroBase.getForca() * fatorDificuldade);
-
             // Cria uma nova instância do monstro com os atributos aumentados
-            Monstro monstroFortalecido = new Monstro(monstroBase.getNome(), novaVida, novaForca);
+            Monstro monstroFortalecido = monstroBase.criarCopiaFortalecida(fatorDificuldade);
 
             // Adiciona o monstro fortalecido à lista de monstros da fase
             this.monstros.add(monstroFortalecido);
