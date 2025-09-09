@@ -15,16 +15,38 @@ public class ConstrutorDeCenario {
         // 1. Define uma lista de monstros base que aparecerão em todas as fases
         //    (a dificuldade deles será ajustada pelo construtor da Fase).
         List<Monstro> monstrosBase = new ArrayList<>();
-        monstrosBase.add(new Monstro("Goblin Lanceiro", 50, 8));
-        monstrosBase.add(new Monstro("Orc Grunt", 80, 12));
+        // aqui vamos add todos os nossos monstros base
+        monstrosBase.add(new Monstro("Corredor", 50, 8));
+        monstrosBase.add(new Monstro("Esqueleto", 80, 12));
+        monstrosBase.add(new Monstro("Servos", 100, 15));
 
         // 2. Define uma lista de ambientes para variar o cenário
         String[] ambientes = {
-            "Floresta Sombria",
-            "Caverna de Cristal",
-            "Pântano Apodrecido",
-            "Ruínas de um Castelo",
-            "Vulcão Adormecido"
+    "Estádio Goblin",
+    "Fosso dos Ossos",
+    "Torneio Bárbaro",
+    "Parquinho da P.E.K.K.A",
+    "Vale dos Feitiços",
+    "Oficina do Construtor",
+    "Arena Real",
+    "Pico Congelado",
+    "Arena da Selva",
+    "Montanha do Porco",
+    "Eletrovale",
+    "Cidade Assombrada",
+    "Covil dos Patifes",
+    "Pico Sereno",
+    "Mina do Mineiro",
+    "Cozinha do Executor",
+    "Cripta Real",
+    "Santuário Silencioso",
+    "Spa do Dragão",
+    "Campo de Treinamento",
+    "Clash Fest",
+    "PANQUECAS!",
+    "Valhalla",
+    "Arena Lendária"
+
         };
 
         // 3. Loop para criar cada fase
