@@ -6,7 +6,7 @@ import Jogo.Classificadores.Raridade;
 
 public class ArcoCurto extends Arco{
     public ArcoCurto() {
-        super("Arco Curto de Patrulha", Raridade.COMUM, OrigemDoItem.GERAL, 1, 8, 0.3f);
+        super("Arco Curto de Patrulha", Raridade.COMUM, OrigemDoItem.ARQUEIRA, 0, 8, 0.3f);
         String desc = """
                 Um arco padrão distribuído às sentinelas e batedores do reino. 
                 É leve, fácil de carregar por longos períodos e rápido de sacar.

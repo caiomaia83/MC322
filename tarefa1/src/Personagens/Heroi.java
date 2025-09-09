@@ -11,7 +11,7 @@ public abstract class Heroi extends Personagem {
 
     public Heroi(String nome, int pontosDeVidaTotal, int forca, Arma arma) {
         super(nome, pontosDeVidaTotal, forca, arma);
-        this.nivel = 1;
+        this.nivel = 0;
         this.experiencia = 0;
         this.expProximoNivel = 100;
         this.sorte = 0.0f;
@@ -19,14 +19,32 @@ public abstract class Heroi extends Personagem {
 
     public void ganharExperiencia(Monstro alvo) {
         this.experiencia += alvo.getXpConcedido();
+        System.out.printf("%s ganhou %d de Experiência!\n", this.getNome(), alvo.getXpConcedido());
         this.subirDeNivel();
     }
 
     @Override
     public void exibirStatus() {
         super.exibirStatus();
-        System.out.printf("Nivel: %d\n", this.nivel);
-        System.out.printf("Xp: %d / %d\n", this.experiencia, this.expProximoNivel);
+        // Barra de Xp
+        double porcentagemXp = (double) this.experiencia / this.expProximoNivel;
+        int tamanhoBarra = 20; // Tamanho da barra em caracteres 
+        int blocosPreenchidos = (int) (tamanhoBarra * porcentagemXp);
+        
+        // Constrói a barra
+        StringBuilder barraXp = new StringBuilder("[");
+        barraXp.append("#".repeat(blocosPreenchidos)); 
+        barraXp.append("-".repeat(tamanhoBarra - blocosPreenchidos)); 
+        barraXp.append("]");
+        // ----------------------------
+
+        System.out.printf("Nível:       %d\n", this.nivel);
+        System.out.printf("XP:          %s %d / %d \n", 
+                        barraXp.toString(), 
+                        this.experiencia, 
+                        this.expProximoNivel,
+                        porcentagemXp * 100);
+        System.out.printf("\n");
     }
 
     private void subirDeNivel() {
@@ -65,6 +83,13 @@ public abstract class Heroi extends Personagem {
         Random random = new Random();
         this.sorte = random.nextFloat(1.0f);
         return this.sorte;
+    }
+
+    public void inspecionarArma(Arma arma) {
+        arma.exibirStatus();
+        if(arma.getMinNivel() >= this.getMinNivelArma()) {
+            this.equiparArma(arma);
+        }
     }
 
     // optei por fazer o aumento de nível individual á cada tipo de herói

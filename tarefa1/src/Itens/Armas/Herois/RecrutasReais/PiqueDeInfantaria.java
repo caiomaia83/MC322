@@ -5,7 +5,7 @@ import Jogo.Classificadores.Raridade;
 
 public class PiqueDeInfantaria extends Lanca {
     public PiqueDeInfantaria(){
-        super("Pique de Infantaria",  Raridade.COMUM, OrigemDoItem.GERAL, 3, 10, 0.2f);
+        super("Pique de Infantaria",  Raridade.COMUM, OrigemDoItem.RECRUTA, 3, 10, 0.2f);
         String desc = """
                 Uma arma padronizada, forjada às centenas para armar as legiões do Rei. 
                 O cabo é robusto e a ponta de ferro, em formato de folha, é projetada para ser eficaz tanto em estocadas quanto em pequenos cortes.

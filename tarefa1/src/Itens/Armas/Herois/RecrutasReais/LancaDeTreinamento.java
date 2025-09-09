@@ -7,7 +7,7 @@ import Jogo.Classificadores.Raridade;
 public class LancaDeTreinamento extends Lanca {
     
     public LancaDeTreinamento(){
-        super("Lança de Treinamento", Raridade.COMUM, OrigemDoItem.GERAL, 1, 8, 0.15f);
+        super("Lança de Treinamento", Raridade.COMUM, OrigemDoItem.RECRUTA, 0, 8, 0.15f);
 
         String desc = """
                 A primeira arma que todo recruta recebe. 

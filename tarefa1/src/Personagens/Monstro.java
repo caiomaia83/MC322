@@ -48,7 +48,6 @@ public abstract class Monstro extends Personagem {
     }
 
     public Arma largaArma(float sorteDoJogador) {
-        System.out.println(this.getNome() + " foi derrotado!");
 
         if(sorteDoJogador <= 0.15) { // Para sorte muito baixa o jogador não ganha nada 
             System.out.printf("Sorte baixa... %s não deixou cair nada.", this.getNome());
@@ -56,7 +55,7 @@ public abstract class Monstro extends Personagem {
         
         Arma armaSorteada = (Arma) GerenciadorDeLoot.sortearItemComSorte(this.listaDearmasParaLargar, sorteDoJogador);
         
-        System.out.printf("%s deixou cair %d!\n", this.getNome(), armaSorteada.getNome());
+        System.out.printf("%s deixou cair %s!\n", this.getNome(), armaSorteada.getNome());
 
         return armaSorteada;
     }

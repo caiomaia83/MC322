@@ -1,4 +1,4 @@
-package Itens.Armas.Herois.Bárbaros;
+package Itens.Armas.Herois.Bárbaros.Comum;
 
 import Itens.Armas.ArmasBase.Espada;
 import Jogo.Classificadores.OrigemDoItem;
@@ -6,7 +6,7 @@ import Jogo.Classificadores.Raridade;
 
 public class CuteloDeCaça extends Espada {
     public CuteloDeCaça() {
-        super("Cutelo de Caça", Raridade.COMUM, OrigemDoItem.GERAL, 1, 10, 0.2f); 
+        super("Cutelo de Caça", Raridade.COMUM, OrigemDoItem.BARBARO, 1, 10, 0.2f); 
 
         String desc = """
                 Uma lâmina larga e pesada, projetada para esquartejar grandes feras da floresta. 

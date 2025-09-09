@@ -48,4 +48,14 @@ public abstract class Arma extends Item {
     protected void setAlcance(float alcance) {
         this.alcance = alcance;
     }
+
+    // Exibe o status da arma 
+    public void exibirStatus() {
+        System.out.printf(" ======== Status de Arma:  %s ========\n", this.getNome());
+        System.out.println("Raridade: " + this.getRaridade());
+        System.out.println("Nível mínimo: " + this.getMinNivel());
+        System.out.println("Descrição: " + this.getDescricao());
+        System.out.printf("Dano: %s \n", this.getDano());
+        System.out.printf("Velocidade de ataque: %.2f\n", this.velocidadeDeAtaque);
+    }
 }

@@ -1,4 +1,4 @@
-package Itens.Armas.Herois.Bárbaros;
+package Itens.Armas.Herois.Bárbaros.Comum;
 
 import Itens.Armas.ArmasBase.Espada;
 import Jogo.Classificadores.OrigemDoItem;
@@ -6,7 +6,7 @@ import Jogo.Classificadores.Raridade;
 
 public class QuebraOssos extends Espada {
     public QuebraOssos() {
-        super("Quebra-Ossos Grosseiro", Raridade.COMUM, OrigemDoItem.GERAL, 2, 11, 0.25f);
+        super("Quebra-Ossos Grosseiro", Raridade.COMUM, OrigemDoItem.BARBARO, 2, 11, 0.15f);
 
         String desc = """
                 Menos uma espada e mais uma barra de ferro brutalmente afiada. 

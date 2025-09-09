@@ -27,10 +27,10 @@ public class Main {
         */
 
         //  CRIAÇÃO DOS PERSONAGENS 
-        RecrutaReal heroi = new RecrutaReal("joao", 100, 15);
+        Arqueira heroi = new Arqueira("ana", 100, 15);
         Monstro[] monstros = {
-            new Servo( 30, 8,5),
-            new Esqueleto( 50, 10, 5),
+            new Servo( 30, 8,1000),
+            new Esqueleto( 50, 10, 5000),
             new Corredor(70, 20, 20, 20)
         };
 
@@ -70,6 +70,7 @@ public class Main {
                 } else {
                     System.out.println("O " + monstroAtual.getNome() + " foi derrotado!");
                     heroi.ganharExperiencia(monstroAtual);
+                    heroi.inspecionarArma(monstroAtual.largaArma(heroi.getSorte()));
                 }
 
                 // Verificação de sobrevivência do herói
@@ -85,8 +86,8 @@ public class Main {
 
             // Exibição de status no final do encontro
             System.out.println("\n--- STATUS PÓS-ENCONTRO ---");
+            System.out.println();
             heroi.exibirStatus();
-            System.out.println("---------------------------------");
         }
 
         //  CONCLUSÃO DO DESAFIO 

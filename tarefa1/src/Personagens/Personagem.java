@@ -36,13 +36,13 @@ public abstract class Personagem {
 
     public void exibirStatus() {
         System.out.printf(" -- Status de %s --\n", this.nome);
-        System.out.printf("HP: %d / %d\n", this.pontosDeVida, this.pontosDeVidaTotal);
+        System.out.printf("HP:          %d / %d\n", this.pontosDeVida, this.pontosDeVidaTotal);
         if(this.arma == null) {
-            System.out.println("Arma: Nenhuma Equipada");
+            System.out.println("Arma:   Nenhuma Equipada");
         } else {
-            System.out.printf("Arma: %s \n", this.arma.getNome());
+            System.out.printf("Arma:      %s \n", this.arma.getNome());
         }
-        System.out.printf("Forca: %d\n", this.forca);
+        System.out.printf("Forca:       %d\n", this.forca);
     }
 
     public String getNome() {
@@ -85,9 +85,14 @@ public abstract class Personagem {
         return this.arma.getNome();
     }
 
-    private String getDescricaoArma() {
+    public String getDescricaoArma() {
         return this.arma.getDescricao();
     }
+
+    public int getMinNivelArma() {
+        return this.arma.getMinNivel();
+    }
+    
 
     public void exibirStatusArma() {
         System.out.printf(" ======== Status de Arma:  %s ========\n", this.getNomeArma());

@@ -18,8 +18,8 @@ public class ConstrutorDeTabelaDeLoot {
 
         // Busca no registro geral por todos ites de mesma origem 
         for(Item itemModelo : RegistroDeItens.TODOS_OS_ITENS) {
-            // Caso encontre um item dessa origem
-            if(itemModelo.getOrigemDoItem() == origem) {
+            // Caso encontre um item dessa origem ou de origem geral
+            if(itemModelo.getOrigemDoItem() == origem || itemModelo.getOrigemDoItem() == OrigemDoItem.GERAL) {
                 tabelaDeLoot.add(itemModelo);
             }
         }

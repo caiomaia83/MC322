@@ -1,0 +1,17 @@
+package Itens.Armas.Monstros.Esqueletos.Raro;
+
+import Itens.Armas.ArmasBase.Martelo;
+import Jogo.Classificadores.OrigemDoItem;
+import Jogo.Classificadores.Raridade;
+
+public class EsmagadorDeVontades extends Martelo{
+    public EsmagadorDeVontades() {
+        super("Esmagador de Vontades", Raridade.RARO, OrigemDoItem.ESQUELETO, 10, 25, 0.05f);
+        String desc = """
+                Um malho de duas mãos cuja cabeça de metal parece absorver o som, tornando seus impactos estranhamente silenciosos e pesados. 
+                A arma não esmaga apenas ossos; ela esmaga a moral. Aqueles atingidos por ela sentem sua determinação se esvair, ficando confusos 
+                e hesitantes em batalha.
+                """;
+        this.setDescricao(desc);
+    }
+}
