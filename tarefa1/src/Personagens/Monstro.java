@@ -37,7 +37,7 @@ public abstract class Monstro extends Personagem {
 
     public List<Arma> getListaDeArmasParaLargar() {
         return this.listaDearmasParaLargar;
-    }
+    } 
 
     protected void setListaDeArmasParaLargar(List <Arma> lista) {
         this.listaDearmasParaLargar = lista;
