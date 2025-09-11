@@ -1,0 +1,100 @@
+**Classe:** Main
+
+    **Atributos:**
+    - (Nenhum atributo de classe)
+
+    **Métodos:**
+    - public static void main(String[] args): Ponto de entrada principal do programa.
+        Este método orquestra a execução do jogo, incluindo:
+        1. A criação do personagem do herói.
+        2. A geração dinâmica do cenário (masmorra com múltiplas fases).
+        3. A apresentação do desafio e do status inicial do herói.
+        4. O loop principal que percorre cada fase da masmorra, gerenciando os combates contra os monstros.
+        5. A verificação do status do herói (vivo ou morto) para determinar o fim do jogo.
+        6. A exibição da mensagem final de vitória ou derrota.
+
+----------------------------------------------------------------------------------------------------------------
+
+**Classe:** Personagem (Abstrata)
+
+    **Atributos:**
+    - private String nome: O nome do personagem.
+    - protected int pontosDeVida: A quantidade atual de vida do personagem.
+    - private int pontosDeVidaTotal: A quantidade máxima de vida do personagem.
+    - private int forca: O atributo de força base do personagem, que influencia o dano.
+    - protected int dano: O dano total do personagem (raramente usado diretamente, o método getDano() é preferível).
+    - protected Arma arma: O objeto da arma equipada pelo personagem.
+
+    **Construtor:**
+    - public Personagem(String nome, int pontosDeVidaTotal, int forca, Arma arma): Inicializa um novo objeto 
+        Personagem com seus atributos básicos.
+
+    **Métodos:**
+    - public boolean estaVivo(): Verifica se o personagem ainda tem pontos de vida (HP > 0).
+         Retorna 'true' se vivo,'false' caso contrário.
+    - public void receberDano(int dano): Subtrai uma quantidade de dano dos pontos de vida atuais do personagem.
+    - public void exibirStatus(): Imprime no console as informações principais do personagem 
+        (Nome, HP, Arma, Força).
+    - public String getNome(): Retorna o nome do personagem.
+    - public int getPontosDeVida(): Retorna os pontos de vida atuais do personagem.
+    - protected void setPontosDeVida(int hp): Define os pontos de vida atuais do personagem.
+    - public int getPontosDeVidaTotal(): Retorna os pontos de vida máximos do personagem.
+    - protected void setPontosDeVidaTotal(int hpTotal): Define os pontos de vida máximos do personagem.
+    - public int getDano(): Calcula e retorna o dano total do personagem (Força + Dano da Arma).
+    - public int getForca(): Retorna o valor de força base do personagem.
+    - protected void setForca(int forca): Define o valor de força do personagem.
+    - public String getNomeArma(): Retorna o nome da arma equipada.
+    - private String getDescricaoArma(): Retorna a descrição da arma equipada.
+    - public void exibirStatusArma(): Imprime no console os detalhes da arma equipada.
+    - public abstract void atacar(Personagem alvo): Método abstrato que define a lógica de ataque.
+         As classes filhas devem implementar como um personagem ataca o outro.
+
+----------------------------------------------------------------------------------------------------------
+
+**Classe:** Monstro (Abstrata, herda de Personagem)
+
+    **Atributos:**
+    - private int xpConcedido: A quantidade de pontos de experiência (XP) que o monstro concede ao ser derrotado.
+    - private List<Arma> listaDearmasParaLargar: Uma lista de possíveis armas que o monstro pode deixar cair (loot) ao morrer.
+    - private OrigemDoItem origem: Um classificador que define a "origem" do monstro, usado para determinar sua tabela de loot.
+
+    **Construtor:**
+    - public Monstro(String nome, OrigemDoItem origem, int pontosDeVidaTotal, int forca, int xpConcedido, Arma arma): Inicializa um novo monstro, chamando o construtor da classe pai (Personagem) e definindo seus próprios atributos, incluindo a construção da sua lista de loot com base na origem.
+
+    **Métodos:**
+    - public abstract Monstro criarCopiaFortalecida(double fatorDificuldade): 
+        Método abstrato que deve ser implementado pelas classes filhas para criar uma versão mais forte do monstro, ajustando seus status com base em um fator de dificuldade.
+    - public void exibirStatus(): 
+        Sobrescreve o método da classe pai para incluir a exibição da quantidade de XP concedido, além das informações básicas.
+    - public int getXpConcedido(): Retorna a quantidade de XP que o monstro concede.
+    - public List<Arma> getListaDeArmasParaLargar(): Retorna a lista de armas que o monstro pode dropar.
+    - protected void setListaDeArmasParaLargar(List<Arma> lista): 
+        Define a lista de armas que o monstro pode dropar.
+    - public OrigemDoItem getOrigemDoItem(): Retorna a origem do item do monstro.
+    - public Arma largaArma(float sorteDoJogador):
+         Gerencia o sistema de loot. Com base na sorte do jogador, sorteia uma arma da 
+         'listaDearmasParaLargar' e a retorna. Pode não retornar nada se a sorte for muito baixa.
+
+----------------------------------------------------------------------------------------------------------
+
+**Classe:** Heroi (Abstrata, herda de Personagem)
+
+    **Atributos:**
+    - private int nivel: O nível atual do herói.
+    - private int experiencia: A quantidade atual de XP do herói.
+    - private int expProximoNivel: A quantidade de XP necessária para o próximo nível.
+    - private float sorte: O atributo de sorte do herói, usado para loot.
+
+    **Construtor:**
+    - public Heroi(String nome, int pontosDeVidaTotal, int forca, Arma arma): Inicializa um novo herói no nível 1.
+
+    **Métodos:**
+    - public void ganharExperiencia(Monstro alvo): Adiciona XP de um monstro derrotado e inicia a verificação de subida de nível.
+    - public void exibirStatus(): Mostra o status do herói, incluindo nível e XP, sobrescrevendo o método da classe pai.
+    - private void subirDeNivel(): Gerencia a lógica de subida de nível, aumentando os atributos e a meta de XP.
+    - public void equiparArma(Arma novaArma): Equipa uma nova arma, validando o requisito de nível.
+    - public float getSorte(): Retorna um valor de sorte aleatório, gerado a cada chamada.
+    - protected abstract void aumentaAtributos(): Método abstrato para definir o aumento de atributos ao subir de nível.
+    - public abstract void usarHabilidadeEspecial(Personagem alvo): Método abstrato para a habilidade especial do herói.
+
+----------------------------------------------------------------------------------------------------
