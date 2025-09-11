@@ -25,7 +25,7 @@ public class Main {
         System.out.println("  O DESAFIO DA MASMORRA GERADA DINAMICAMENTE");
         System.out.println("=====================================================");
         System.out.println(heroi.getNome() + ", um corajoso aventureiro, adentra a escuridão!");
-        System.out.println("Ele deve sobreviver a " + numeroDeFases + " fases para clamar a glória!");
+        System.out.println("Ele deve sobreviver a " + numeroDeFases + " fase(s) para clamar a glória!");
         System.out.println("\n--- STATUS INICIAL DO HERÓI ---");
         heroi.exibirStatus();
         heroi.exibirStatusArma(); // Se este método ainda for relevante
@@ -38,7 +38,7 @@ public class Main {
             
             // LOOP DE COMBATE PARA CADA MONSTRO NA FASE ATUAL
             for (Monstro monstroAtual : faseAtual.getMonstros()) {
-                System.out.println("\n" + heroi.getNome() + " encara um " + monstroAtual.getNome() + " fortalecido!");
+                System.out.println("\n" + heroi.getNome() + " encara um " + monstroAtual.getNome());
 
                 // A sua lógica de combate original, agora aplicada a cada monstro da fase
                 while (heroi.estaVivo() && monstroAtual.estaVivo()) {
