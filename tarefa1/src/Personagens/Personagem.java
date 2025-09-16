@@ -1,6 +1,7 @@
 package Personagens;
 
 import Itens.Armas.Arma;
+import Jogo.ataques.AcaoCombate;
 
 public abstract class Personagem implements Combatente{
     private String nome;
@@ -107,7 +108,7 @@ public abstract class Personagem implements Combatente{
     System.out.printf("%s recebeu %d de cura!\n", this.nome, cura);
 }
 
-    public abstract AcaoDeCombate escolherAcao(Combatente alvo);
+    public abstract AcaoCombate escolherAcao(Combatente alvo);
     
   
 }
