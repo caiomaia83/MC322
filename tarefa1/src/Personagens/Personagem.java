@@ -95,7 +95,7 @@ public abstract class Personagem implements Combatente{
         System.out.printf("Dano: %s \n", this.arma.getDano());
         System.out.printf("Forca: %d\n", this.forca);
     }
-    
+
     public void receberCura(int cura) {
     this.pontosDeVida += cura;
 
@@ -107,6 +107,7 @@ public abstract class Personagem implements Combatente{
     System.out.printf("%s recebeu %d de cura!\n", this.nome, cura);
 }
 
-
-    public abstract void atacar(Personagem alvo);
+    public abstract AcaoDeCombate escolherAcao(Combatente alvo);
+    
+  
 }
