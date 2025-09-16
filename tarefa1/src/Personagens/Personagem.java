@@ -1,8 +1,9 @@
 package Personagens;
 
 import Itens.Armas.Arma;
+import Jogo.ataques.AcaoCombate;
 
-public abstract class Personagem {
+public abstract class Personagem implements Combatente{
     private String nome;
     protected int pontosDeVida;
     private int pontosDeVidaTotal; // Guarda o hp total 
@@ -96,6 +97,18 @@ public abstract class Personagem {
         System.out.printf("Forca: %d\n", this.forca);
     }
 
+    public void receberCura(int cura) {
+    this.pontosDeVida += cura;
 
-    public abstract void atacar(Personagem alvo);
+    // Garante que a cura não ultrapasse a vida máxima
+    if (this.pontosDeVida > this.pontosDeVidaTotal) {
+        this.pontosDeVida = this.pontosDeVidaTotal;
+    }
+
+    System.out.printf("%s recebeu %d de cura!\n", this.nome, cura);
+}
+
+    public abstract AcaoCombate escolherAcao(Combatente alvo);
+    
+  
 }

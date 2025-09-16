@@ -1,13 +1,17 @@
 package Personagens;
 import java.util.Random;
+import java.util.List;
 
 import Itens.Armas.Arma;
+import Jogo.ataques.AcaoCombate;
 
 public abstract class Heroi extends Personagem {
     private int nivel;
     private int experiencia;
     private int expProximoNivel;
     private float sorte;
+
+    protected List<AcaoCombate> acoes;
 
     public Heroi(String nome, int pontosDeVidaTotal, int forca, Arma arma) {
         super(nome, pontosDeVidaTotal, forca, arma);
@@ -70,6 +74,18 @@ public abstract class Heroi extends Personagem {
     // optei por fazer o aumento de nível individual á cada tipo de herói
     protected abstract void aumentaAtributos();
 
-    public abstract void usarHabilidadeEspecial(Personagem alvo);
+    public AcaoCombate escolherAcao(Combatente alvo) {
+        // escolhe uma acao/ataque aleatoriamente
+        if (this.acoes != null && !this.acoes.isEmpty()) {
+        Random random = new Random();
+
+        int indiceAleatorio = random.nextInt(this.acoes.size());
+
+        return this.acoes.get(indiceAleatorio);
+    }
+    
+    // Medida de segurança caso o herói não tenha nenhuma ação.
+    return null;
+    }
 
 }

@@ -1,17 +1,20 @@
 package Personagens;
 
 import java.util.List;
+import java.util.Random;
 
 import Itens.Armas.Arma;
 import Jogo.Classificadores.OrigemDoItem;
 import Jogo.Loot.ConstrutorDeTabelaDeLoot;
 import Jogo.Loot.GerenciadorDeLoot;
+import Jogo.ataques.AcaoCombate;
 
 public abstract class Monstro extends Personagem {
 
     private int xpConcedido;
     private  List<Arma> listaDearmasParaLargar;
     private OrigemDoItem origem; // Guarda a origem de item do monstro
+    protected List<AcaoCombate> acoes;
 
     public Monstro(String nome, OrigemDoItem origem, int pontosDeVidaTotal, int forca, int xpConcedido, Arma arma) {
         super(nome, pontosDeVidaTotal, forca, arma);
@@ -25,6 +28,22 @@ public abstract class Monstro extends Personagem {
     public abstract Monstro criarCopiaFortalecida(double fatorDificuldade); // Como é um método abstrato, será único a cada monstro
 
     @Override
+
+    
+    public AcaoCombate escolherAcao(Combatente alvo) {
+        // escolhe uma acao/ataque aleatoriamente
+        if (this.acoes != null && !this.acoes.isEmpty()) {
+        Random random = new Random();
+
+        int indiceAleatorio = random.nextInt(this.acoes.size());
+
+        return this.acoes.get(indiceAleatorio);
+    }
+    
+    // Medida de segurança caso o herói não tenha nenhuma ação.
+    return null;
+    }
+    
     public void exibirStatus() {
         super.exibirStatus();
 

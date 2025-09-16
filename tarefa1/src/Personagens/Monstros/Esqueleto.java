@@ -8,6 +8,8 @@ import Jogo.Loot.ConstrutorDeTabelaDeLoot;
 import Jogo.Loot.GerenciadorDeLoot;
 import Personagens.Monstro;
 import Personagens.Personagem;
+import Jogo.ataques.AtaqueFisico;
+import java.util.ArrayList;
 
 public class Esqueleto extends Monstro {
     // Constroi a lista de todas armas que um esqueleto pode dropar
@@ -22,14 +24,10 @@ public class Esqueleto extends Monstro {
         int novaVida = (int) (this.getPontosDeVidaTotal() * fatorDificuldade);
         int novaForca = (int) (this.getForca() * fatorDificuldade);
         int novoXp = (int) (this.getXpConcedido() * fatorDificuldade);
+        this.acoes = new ArrayList<>();
+        this.acoes.add(new AtaqueFisico());
 
         // Retorna uma instancia mais forte
         return new Esqueleto( novaVida, novaForca, novoXp);
     }
-
-    public void atacar(Personagem alvo) {
-        System.out.println(this.getNome() + " atacou com: Bate-Crânio!");
-        alvo.receberDano(this.getDano());
-    }
-
 }
