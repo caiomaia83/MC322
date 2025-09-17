@@ -6,7 +6,7 @@ import Jogo.ataques.AcaoCombate;
 public abstract class Personagem implements Combatente{
     private String nome;
     protected int pontosDeVida;
-    private int pontosDeVidaTotal; // Guarda o hp total 
+    public int pontosDeVidaTotal; 
     private int forca;
     protected int dano;
     protected Arma arma;
@@ -31,7 +31,6 @@ public abstract class Personagem implements Combatente{
             this.pontosDeVida = 0;
         }
 
-        // Imprime uma mensagem indicando a ação 
         System.out.printf("%s recebeu %d de dano!\n", this.nome, dano);
     }
 
@@ -66,7 +65,7 @@ public abstract class Personagem implements Combatente{
         this.pontosDeVidaTotal = hpTotal;
     }
 
-    public int getDano() { // Retorna o dano do ataque do personagem
+    public int getDano() {
         if(this.arma == null) {
             return this.forca;
         }

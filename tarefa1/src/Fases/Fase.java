@@ -24,7 +24,7 @@ public class Fase implements IFase {
         Collections.shuffle(listaSorteavel);
         int quantidadeDeMonstros = Math.min(3, listaSorteavel.size());
         List<Monstro> monstrosSelecionados = listaSorteavel.subList(0, quantidadeDeMonstros);
-        double fatorDificuldade = 1.0 + (0.15 * nivel);
+        double fatorDificuldade = 1.0 + (0.05 * nivel);
         for (Monstro monstroBase : monstrosSelecionados) {
             Monstro monstroFortalecido = monstroBase.criarCopiaFortalecida(fatorDificuldade);
             this.monstros.add(monstroFortalecido);

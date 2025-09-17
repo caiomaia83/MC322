@@ -4,16 +4,16 @@ import Personagens.Herois.*;
 
 import java.util.List;
 
-// --- IMPORTAÇÕES DO SISTEMA DE FASES ---
+
 import Fases.ConstrutorDeCenario;
 import Fases.Fase;
 import Fases.GeradorDeFases;
 import Fases.IFase;
 
-// --- IMPORTAÇÕES DO SISTEMA DE COMBATE ---
+
 import Jogo.ataques.AcaoCombate;
 
-// --- IMPORTS PARA O SISTEMA DE LOOT ---
+/
 import Jogo.Loot.Lootavel;
 import Itens.IItem;
 
@@ -22,11 +22,11 @@ public class Main {
     public static void main(String[] args) {
 
         // 1. CRIAÇÃO DO HERÓI
-        Heroi heroi = new Barbaro("Conan, o Bárbaro", 150, 20);
+        Heroi heroi = new Barbaro("Conan, o Bárbaro", 150, 30);
 
         // 2. GERAÇÃO DO MUNDO
         GeradorDeFases gerador = new ConstrutorDeCenario(); 
-        int numeroDeFases = 3;
+        int numeroDeFases = 10;
         List<IFase> masmorra = gerador.gerar(numeroDeFases);
 
         // 3. APRESENTAÇÃO DA AVENTURA
@@ -99,6 +99,7 @@ public class Main {
             if (faseAtual.isConcluida()) {
                 System.out.println("\n--- FASE " + ((Fase) faseAtual).getNivel() + " CONCLUÍDA! ---");
                 heroi.exibirStatus();
+                heroi.restaurarVida();
                 System.out.println("---------------------------------");
             }
         }

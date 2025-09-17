@@ -12,9 +12,8 @@ import Jogo.ataques.AcaoCombate;
 
 import Jogo.Loot.Lootavel;
 import Itens.IItem;
-// --------------------
 
-// MUDANÇA: Adicionado "implements Lootavel"
+
 public abstract class Monstro extends Personagem implements Lootavel {
 
     private int xpConcedido;
@@ -29,21 +28,21 @@ public abstract class Monstro extends Personagem implements Lootavel {
         this.listaDearmasParaLargar = ConstrutorDeTabelaDeLoot.constroiListaDeArmas(origem); // Constrói uma lista de armas 
     }
     
-    // --- NOVO MÉTODO OBRIGATÓRIO DA INTERFACE Lootavel ---
+   
     @Override
     public IItem droparLoot() {
-        // Este método vai "adaptar" a chamada para o seu método já existente.
         
-        // Como não temos a sorte do jogador aqui, vamos gerar uma sorte aleatória.
+        // tem que mudar para pegar a sorte do heroi
         Random random = new Random();
-        float sorteGerada = random.nextFloat(); // Gera um número entre 0.0 e 1.0
+        float sorteGerada = random.nextFloat(); 
 
-        // Chama o seu método original 'largaArma' com a sorte gerada
         return this.largaArma(sorteGerada);
     }
+        @Override
+        public void restaurarVida(){
+        this.pontosDeVida = pontosDeVidaTotal;
+    }
 
-    
-    // --- SEUS MÉTODOS ORIGINAIS (INTACTOS) ---
 
     // Cria uma instância mais forte do monstro ao subirmos de fase 
     public abstract Monstro criarCopiaFortalecida(double fatorDificuldade); // Como é um método abstrato, será único a cada monstro
@@ -56,7 +55,6 @@ public abstract class Monstro extends Personagem implements Lootavel {
             int indiceAleatorio = random.nextInt(this.acoes.size());
             return this.acoes.get(indiceAleatorio);
         }
-        // Medida de segurança caso o herói não tenha nenhuma ação.
         return null;
     }
     
@@ -81,19 +79,17 @@ public abstract class Monstro extends Personagem implements Lootavel {
         return this.origem;
     }
 
-    // Seu método original foi mantido, como pedido.
     public Arma largaArma(float sorteDoJogador) {
         System.out.println(this.getNome() + " foi derrotado!");
 
-        if(sorteDoJogador <= 0.15) { // Para sorte muito baixa o jogador não ganha nada 
+        if(sorteDoJogador <= 0.15) { 
             System.out.printf("Sorte baixa... %s não deixou cair nada.\n", this.getNome());
-            return null; // Adicionado para não dar erro se não dropar nada
+            return null; 
         }
         
         Arma armaSorteada = (Arma) GerenciadorDeLoot.sortearItemComSorte(this.listaDearmasParaLargar, sorteDoJogador);
         
         if (armaSorteada != null) {
-            // PEQUENA CORREÇÃO: Troquei %d por %s para imprimir o nome da arma corretamente
             System.out.printf("%s deixou cair %s!\n", this.getNome(), armaSorteada.getNome());
         } else {
             System.out.printf("%s não deixou cair nada.\n", this.getNome());

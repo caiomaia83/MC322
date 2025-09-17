@@ -21,6 +21,11 @@ public abstract class Heroi extends Personagem {
         this.sorte = 0.0f;
     }
 
+    @Override
+    public void restaurarVida(){
+        this.pontosDeVida = pontosDeVidaTotal;
+    }
+
     public void ganharExperiencia(Monstro alvo) {
         this.experiencia += alvo.getXpConcedido();
         this.subirDeNivel();

@@ -10,4 +10,5 @@ public interface Combatente {
     void receberDano(int dano);
     void receberCura(int cura);
     AcaoCombate escolherAcao(Combatente alvo);
+    void restaurarVida();
 }
