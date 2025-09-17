@@ -4,62 +4,71 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import Personagens.Monstro;
+import Personagens.Heroi;
+import Fases.TipoCenario;
 
-public class Fase {
+// MUDANÇA: Sua classe agora assina o contrato da interface IFase
+public class Fase implements IFase { 
     private int nivel;
-    private String ambiente;
+    private TipoCenario tipoCenario; // MUDANÇA: Trocamos a String pelo nosso Enum
     private List<Monstro> monstros;
 
-    public Fase(int nivel, String ambiente, List<Monstro> monstrosBase) {
+    // MUDANÇA: O construtor agora recebe um TipoCenario
+    public Fase(int nivel, TipoCenario tipoCenario, List<Monstro> monstrosBase) {
         this.nivel = nivel;
-        this.ambiente = ambiente;
-        this.monstros = new ArrayList<>(); // Cria a lista final de monstros da fase
+        this.tipoCenario = tipoCenario;
+        this.monstros = new ArrayList<>();
 
-        // A lógica de seleção aleatória de monstros está correta.
+        // Sua lógica original para fortalecer os monstros (continua perfeita)
         List<Monstro> listaSorteavel = new ArrayList<>(monstrosBase);
         Collections.shuffle(listaSorteavel);
         int quantidadeDeMonstros = Math.min(3, listaSorteavel.size());
         List<Monstro> monstrosSelecionados = listaSorteavel.subList(0, quantidadeDeMonstros);
-        
-        // Fator de dificuldade: aumenta 15% por nível.
         double fatorDificuldade = 1.0 + (0.15 * nivel);
-
-        // Itera sobre os monstros selecionados para criar suas versões fortalecidas.
         for (Monstro monstroBase : monstrosSelecionados) {
-        
             Monstro monstroFortalecido = monstroBase.criarCopiaFortalecida(fatorDificuldade);
-
-            // Adiciona o monstro fortalecido à lista de monstros da fase
             this.monstros.add(monstroFortalecido);
         }
     }
 
-    /**
-     * Método para iniciar e exibir as informações da fase.
-     */
-    public void iniciar() {
-        System.out.println("--- Bem-vindo à Fase " + this.nivel + " ---");
-        System.out.println("Cenário: " + this.ambiente);
-        System.out.println("Monstros a serem derrotados:");
+    // MUDANÇA: Assinatura do método ajustada para cumprir o contrato
+    @Override
+    public void iniciar(Heroi heroi) {
+        System.out.println("\n--- FASE " + this.nivel + ": " + this.tipoCenario.name().replace("_", " ") + " ---");
+        // Usando a descrição que colocamos no Enum!
+        System.out.println(this.tipoCenario.getDescricao());
+        // Usando o efeito que colocamos no Enum!
+        this.tipoCenario.aplicarEfeitos(heroi);
 
+        System.out.println("\nMonstros a serem derrotados:");
         for (Monstro monstro : this.monstros) {
             monstro.exibirStatus();
         }
         System.out.println("------------------------------------");
     }
 
-    /**
-     * Retorna a lista de monstros desta fase para que possam ser combatidos.
-     * @return A lista de monstros.
-     */
+    // NOVO: Método obrigatório da interface IFase
+    @Override
+    public boolean isConcluida() {
+        for (Monstro monstro : this.monstros) {
+            if (monstro.estaVivo()) {
+                return false; // Encontrou um monstro vivo, fase não concluída
+            }
+        }
+        return true; // Nenhum monstro vivo encontrado, fase concluída
+    }
+
+    // NOVO: Método obrigatório da interface IFase
+    @Override
+    public TipoCenario getTipoDeCenario() {
+        return this.tipoCenario;
+    }
+
+    // Seus métodos antigos que ainda são úteis para a Main
     public List<Monstro> getMonstros() {
         return this.monstros;
     }
 
-    /**
-     * Retorna o nível atual da fase.
-     * @return O número do nível.
-     */
     public int getNivel() {
         return this.nivel;
     }
