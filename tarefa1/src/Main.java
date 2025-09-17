@@ -1,25 +1,33 @@
-import Personagens.*;
 import Personagens.Herois.*;
-import Personagens.Monstros.*;
+import Personagens.Monstro;
 import java.util.List;
+
+// --- NOVAS IMPORTAÇÕES PARA O SISTEMA DE MUNDO ---
 import Fases.ConstrutorDeCenario;
-import Fases.Fase;
-import Jogo.ataques.AcaoCombate; // ÚNICA NOVA IMPORTAÇÃO NECESSÁRIA
+import Fases.Fase; // A sua classe concreta
+import Fases.GeradorDeFases; // A nova interface
+import Fases.IFase; // A nova interface
+import Jogo.ataques.AcaoCombate;
+import Personagens.Heroi;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        // 1. CRIAÇÃO DO HERÓI
-        Heroi heroi = new RecrutaReal("Joao", 100, 15);
+        // 1. CRIAÇÃO DO HERÓI (Pode ser qualquer um dos seus heróis)
+        Heroi heroi = new Barbaro("Conan", 150, 20);
 
-        // 2. GERAÇÃO DINÂMICA DO MUNDO
-        int numeroDeFases = 2;
-        List<Fase> masmorra = ConstrutorDeCenario.gerarFases(numeroDeFases);
+        // --- MUDANÇA: GERAÇÃO DO MUNDO USANDO AS INTERFACES ---
+        System.out.println("Criando o arquiteto do mundo...");
+        // 1. Criamos um objeto que cumpre o contrato de GeradorDeFases
+        GeradorDeFases gerador = new ConstrutorDeCenario(); 
+        int numeroDeFases = 1;
+        // 2. Usamos o gerador para criar a lista de fases. A lista é da INTERFACE.
+        List<IFase> masmorra = gerador.gerar(numeroDeFases);
 
-        // 3. APRESENTAÇÃO DO DESAFIO
+        // 3. APRESENTAÇÃO DO DESAFIO (praticamente igual)
         System.out.println("=====================================================");
-        System.out.println("  O DESAFIO DAs ARENAS !!!");
+        System.out.println("          O DESAFIO DAS ARENAS!!!");
         System.out.println("=====================================================");
         System.out.println(heroi.getNome() + ", um corajoso " + heroi.getClass().getSimpleName() + ", adentra a escuridão!");
         System.out.println("Ele deve sobreviver a " + numeroDeFases + " fase(s) para clamar a glória!");
@@ -27,15 +35,27 @@ public class Main {
         heroi.exibirStatus();
         System.out.println("---------------------------------");
 
-        // 4. LOOP PRINCIPAL PELAS FASES DA MASMORRA
-        for (Fase faseAtual : masmorra) {
+        // --- MUDANÇA: LOOP PRINCIPAL AGORA USA A INTERFACE IFase ---
+        for (IFase faseAtual : masmorra) {
             
-            faseAtual.iniciar();
-            
-            for (Monstro monstroAtual : faseAtual.getMonstros()) {
-                System.out.println("\n" + heroi.getNome() + " encara um " + monstroAtual.getNome());
+            // --- MUDANÇA: O método iniciar() agora aplica os efeitos do cenário no herói! ---
+            faseAtual.iniciar(heroi);
 
-                // ===== BLOCO DE COMBATE REFEITO =====
+            // Verificamos se o herói sobreviveu aos efeitos do cenário antes de começar o combate
+            if (!heroi.estaVivo()) {
+                break;
+            }
+            
+            // Para acessar métodos específicos da sua classe 'Fase' (como getMonstros), fazemos um "cast"
+            List<Monstro> monstrosDaFase = ((Fase) faseAtual).getMonstros();
+
+            for (Monstro monstroAtual : monstrosDaFase) {
+                // Se o monstro já estiver morto (por um evento futuro, por exemplo), pula para o próximo
+                if (!monstroAtual.estaVivo()) continue;
+
+                System.out.println("\n" + heroi.getNome() + " encara um " + monstroAtual.getNome() + "!");
+
+                // O SEU BLOCO DE COMBATE (já estava perfeito e continua igual)
                 while (heroi.estaVivo() && monstroAtual.estaVivo()) {
                     // --- TURNO DO HERÓI ---
                     System.out.println("\n--- Turno do " + heroi.getNome() + " ---");
@@ -57,9 +77,9 @@ public class Main {
                             System.out.println(monstroAtual.getNome() + " não fez nada.");
                         }
                     }
-                } // ===== FIM DO WHILE DE COMBATE =====
+                } // FIM DO WHILE DE COMBATE
 
-                // Lógica pós-combate original (XP)
+                // Lógica pós-combate (XP)
                 if (!monstroAtual.estaVivo() && heroi.estaVivo()) {
                     System.out.println("\nO " + monstroAtual.getNome() + " foi derrotado!");
                     heroi.ganharExperiencia(monstroAtual); 
@@ -74,12 +94,15 @@ public class Main {
                 break;
             }
 
-            System.out.println("\n--- FASE " + faseAtual.getNivel() + " CONCLUÍDA! ---");
-            heroi.exibirStatus();
-            System.out.println("---------------------------------");
+            // Verificamos usando o novo método se a fase realmente foi concluída
+            if (faseAtual.isConcluida()) {
+                System.out.println("\n--- FASE " + ((Fase) faseAtual).getNivel() + " CONCLUÍDA! ---");
+                heroi.exibirStatus();
+                System.out.println("---------------------------------");
+            }
         }
 
-        // 5. CONCLUSÃO DO DESAFIO
+        // 5. CONCLUSÃO DO DESAFIO (igual)
         System.out.println("\n=====================================================");
         if (heroi.estaVivo()) {
             System.out.println("  VITÓRIA! " + heroi.getNome() + " conquistou a masmorra!");
