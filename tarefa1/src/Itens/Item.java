@@ -2,10 +2,11 @@ package Itens;
 import Jogo.Classificadores.OrigemDoItem;
 import Jogo.Classificadores.Raridade;
 import Jogo.Classificadores.TipoDeItem;
+import Itens.IItem;
 
 
 // Classe de itens ( Armas, consumiveis, armaduras )
-public class Item {
+public class Item implements IItem{
     private String nome;
     private String descricao;
     private Raridade raridade;
