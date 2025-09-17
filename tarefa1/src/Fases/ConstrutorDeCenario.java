@@ -1,18 +1,22 @@
+package Fases;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+
+// Imports que corrigimos antes
+import Fases.IFase;
+import Fases.Fase;
+import Fases.TipoCenario;
 import Personagens.Monstro;
 import Personagens.Monstros.*;
-import Fases.TipoCenario;
-import Fases.GeradorDeFases;
 
-// MUDANÇA: A classe agora implementa a interface
+
+// Garanta que esta linha está EXATAMENTE assim
 public class ConstrutorDeCenario implements GeradorDeFases {
 
-    // MUDANÇA: O construtor agora é público e não privado
     public ConstrutorDeCenario() {}
 
-    // MUDANÇA: O método agora se chama 'gerar', não é mais 'static' e retorna 'List<IFase>'
     @Override
     public List<IFase> gerar(int quantidadeDeFases) {
         System.out.println("Construindo o mundo com " + quantidadeDeFases + " fases...");
@@ -33,7 +37,6 @@ public class ConstrutorDeCenario implements GeradorDeFases {
                 monstrosParaFase.add(bestiario.get(indiceAleatorio));
             }
 
-            // Criamos um objeto da sua classe 'Fase', que cumpre o contrato 'IFase'
             IFase novaFase = new Fase(nivelAtual, ambienteAtual, monstrosParaFase);
             fasesGeradas.add(novaFase);
         }
@@ -42,12 +45,10 @@ public class ConstrutorDeCenario implements GeradorDeFases {
         return fasesGeradas;
     }
 
-    // MUDANÇA: Este método agora é privado, não estático
     private List<TipoCenario> getAmbientes() {
         return List.of(TipoCenario.values());
     }
 
-    // MUDANÇA: Este método agora é privado, não estático
     private List<Monstro> criarBestiario() {
         List<Monstro> monstros = new ArrayList<>();
         monstros.add(new Servo(50, 10, 10));

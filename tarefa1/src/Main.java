@@ -8,6 +8,7 @@ import Fases.Fase; // A sua classe concreta
 import Fases.GeradorDeFases; // A nova interface
 import Fases.IFase; // A nova interface
 import Jogo.ataques.AcaoCombate;
+import Personagens.Heroi;
 
 public class Main {
 
@@ -20,7 +21,7 @@ public class Main {
         System.out.println("Criando o arquiteto do mundo...");
         // 1. Criamos um objeto que cumpre o contrato de GeradorDeFases
         GeradorDeFases gerador = new ConstrutorDeCenario(); 
-        int numeroDeFases = 3;
+        int numeroDeFases = 1;
         // 2. Usamos o gerador para criar a lista de fases. A lista é da INTERFACE.
         List<IFase> masmorra = gerador.gerar(numeroDeFases);
 
