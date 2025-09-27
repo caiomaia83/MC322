@@ -4,6 +4,7 @@ import java.util.Random;
 
 import com.rpg.combate.*;
 import com.rpg.itens.Armas.*;
+import com.rpg.exceptions.*;
 
 public abstract class Heroi extends Personagem {
     private int nivel;
@@ -54,13 +55,14 @@ public abstract class Heroi extends Personagem {
 
 
     // Equipa uma nova arma
-    public void equiparArma(Arma novaArma) {
+    public void equiparArma(Arma novaArma)throws NivelInsuficiente {
         // Verifica se o heroi possui nivel suficiente para a arma
         if(this.nivel >= novaArma.getMinNivel()) {
             System.out.println("Você equipou: " +  novaArma.getNome() + "!");
             this.arma = novaArma;
         } else {
-            System.out.println("Você não tem nível suficiente para equipar essa arma...");
+            throw new NivelInsuficiente("Nível insuficiente! Você precisa do nível " +
+            novaArma.getMinNivel() + " para equipar " + novaArma.getNome() + ".");
         }
     }
 

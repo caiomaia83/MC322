@@ -9,25 +9,27 @@ import com.rpg.personagens.*;
 // ADICIONADO: Importa todas as suas ações
 
 public class Barbaro extends Heroi {
-    // Boolean furia;     // REMOVIDO
-    // Boolean berserker; // REMOVIDO
+
+    private int cargasElixir;
 
     public Barbaro(String nome, int pontosDeVida, int forca) {
         super(nome, pontosDeVida, forca, new CuteloDeCaça());
-        // this.furia = false;     // REMOVIDO
-        // this.berserker = false; // REMOVIDO
 
-        // ADICIONADO: Preenchendo a lista de ações
+
         this.acoes = new ArrayList<>();
         this.acoes.add(new AtaqueDesvairado());
         this.acoes.add(new ElixirDeFuria());
+        this.cargasElixir = 2; 
     }
 
-    // REMOVIDO: O método atacar() foi substituído pelas classes de Ação.
+    public int getCargasElixir() {
+        return this.cargasElixir;
+    }
 
-    // REMOVIDO: O método usarHabilidadeEspecial() foi substituído pela classe ElixirDeFuria.
+    public void usarCargaElixir() {
+        this.cargasElixir--;
+    }
 
-    // INTACTO: O método de aumentar atributos continua aqui
     @Override
     protected void aumentaAtributos() {
         this.setPontosDeVidaTotal(this.getPontosDeVidaTotal() + 20);
