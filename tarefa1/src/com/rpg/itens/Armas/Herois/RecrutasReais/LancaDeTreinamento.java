@@ -1,7 +1,7 @@
 package com.rpg.itens.Armas.Herois.RecrutasReais;
-import Itens.Armas.ArmasBase.Lanca;
-import Jogo.Classificadores.OrigemDoItem;
-import Jogo.Classificadores.Raridade;
+
+import com.rpg.itens.Armas.ArmasBase.*;
+import com.rpg.itens.Classificadores.*;
 
 // Primeira lança desbloqueada por um recruta real
 public class LancaDeTreinamento extends Lanca {

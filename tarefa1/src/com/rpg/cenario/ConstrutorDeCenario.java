@@ -4,12 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-// Imports que corrigimos antes
-import Fases.IFase;
-import Fases.Fase;
-import Fases.TipoCenario;
-import Personagens.Monstro;
-import Personagens.Monstros.*;
+import com.rpg.personagens.Monstro;
+import com.rpg.personagens.Monstros.*;
 
 
 // Garanta que esta linha está EXATAMENTE assim

@@ -3,16 +3,11 @@ package com.rpg.personagens;
 import java.util.List;
 import java.util.Random;
 
+import com.rpg.combate.AcaoCombate;
+import com.rpg.itens.IItem;
 import com.rpg.itens.Armas.Arma;
-import Jogo.Classificadores.OrigemDoItem;
-import Jogo.Loot.ConstrutorDeTabelaDeLoot;
-import Jogo.Loot.GerenciadorDeLoot;
-import Jogo.ataques.AcaoCombate;
-
-
-import Jogo.Loot.Lootavel;
-import Itens.IItem;
-// --------------------
+import com.rpg.itens.Classificadores.*;
+import com.rpg.itens.Loot.*;
 
 // MUDANÇA: Adicionado "implements Lootavel"
 public abstract class Monstro extends Personagem implements Lootavel {

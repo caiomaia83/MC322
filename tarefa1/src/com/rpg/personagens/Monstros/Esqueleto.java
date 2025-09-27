@@ -1,15 +1,13 @@
 package com.rpg.personagens.Monstros;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import Itens.Armas.*;
-import Jogo.Classificadores.OrigemDoItem;
-import Jogo.Loot.ConstrutorDeTabelaDeLoot;
-import Jogo.Loot.GerenciadorDeLoot;
-import Personagens.Monstro;
-import Personagens.Personagem;
-import Jogo.ataques.AtaqueFisico;
-import java.util.ArrayList;
+import com.rpg.combate.*;
+import com.rpg.itens.Armas.*;
+import com.rpg.itens.Classificadores.*;
+import com.rpg.itens.Loot.*;
+import com.rpg.personagens.Monstro;
 
 public class Esqueleto extends Monstro {
     // Constroi a lista de todas armas que um esqueleto pode dropar

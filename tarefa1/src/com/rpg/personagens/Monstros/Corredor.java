@@ -1,13 +1,11 @@
 package com.rpg.personagens.Monstros;
 
 import java.util.ArrayList; // ADICIONADO
-import java.util.Random;
 
-import Itens.Armas.Monstros.Corredor.DemolidorDeTorres;
-import Jogo.Classificadores.OrigemDoItem;
-import Personagens.Monstro;
-import Personagens.Personagem;
-import Jogo.ataques.*; // ADICIONADO: Importa as ações
+import com.rpg.combate.*;
+import com.rpg.itens.Armas.Monstros.Corredor.*;
+import com.rpg.itens.Classificadores.*;
+import com.rpg.personagens.Monstro;
 
 public class Corredor extends Monstro {
 

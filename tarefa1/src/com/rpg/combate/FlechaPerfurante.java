@@ -1,9 +1,8 @@
 package com.rpg.combate;
 
 
-import Personagens.Combatente;
-import Personagens.Heroi;
-import Personagens.Herois.Arqueira; // Importamos a Arqueira especificamente
+import com.rpg.personagens.*;
+import com.rpg.personagens.Herois.*;
 
 public class FlechaPerfurante implements AcaoCombate {
 

@@ -1,9 +1,9 @@
 package com.rpg.personagens;
-import java.util.Random;
 import java.util.List;
+import java.util.Random;
 
-import Itens.Armas.Arma;
-import Jogo.ataques.AcaoCombate;
+import com.rpg.combate.*;
+import com.rpg.itens.Armas.*;
 
 public abstract class Heroi extends Personagem {
     private int nivel;

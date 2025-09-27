@@ -1,6 +1,6 @@
 package com.rpg.personagens;
 
-import Jogo.ataques.AcaoCombate; 
+import com.rpg.combate.*;
 
 public interface Combatente {
     String getNome();

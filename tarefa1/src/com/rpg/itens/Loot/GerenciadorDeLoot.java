@@ -1,12 +1,11 @@
 package com.rpg.itens.Loot;
 
-import java.util.Random;
-
-import Itens.Item;
-import Jogo.Classificadores.Raridade;
-
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
+
+import com.rpg.itens.*;
+import com.rpg.itens.Classificadores.*;
 
 // Gerenciador geral de loot para itens
 // A chance de itens raros aumenta com a sorte do jogador 

@@ -1,8 +1,7 @@
 package com.rpg.itens.Armas.Monstros.Esqueletos.Comum;
 
-import Itens.Armas.ArmasBase.Espada;
-import Jogo.Classificadores.OrigemDoItem;
-import Jogo.Classificadores.Raridade;
+import com.rpg.itens.Armas.ArmasBase.*;
+import com.rpg.itens.Classificadores.*;
 
 public class LaminaCerimonial extends Espada{
     public LaminaCerimonial() {

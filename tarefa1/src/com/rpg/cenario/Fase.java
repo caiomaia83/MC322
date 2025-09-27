@@ -3,9 +3,8 @@ package com.rpg.cenario;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import Personagens.Monstro;
-import Personagens.Heroi;
-import Fases.TipoCenario;
+
+import com.rpg.personagens.*;
 
 // MUDANÇA: Sua classe agora assina o contrato da interface IFase
 public class Fase implements IFase { 

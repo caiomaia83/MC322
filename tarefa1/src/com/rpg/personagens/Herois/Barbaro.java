@@ -1,11 +1,12 @@
 package com.rpg.personagens.Herois;
 
 import java.util.ArrayList; // ADICIONADO
-import Itens.Armas.Herois.Bárbaros.CuteloDeCaça;
-import Personagens.Combatente; // ADICIONADO
-import Personagens.Heroi;
-import Personagens.Personagem;
-import Jogo.ataques.*; // ADICIONADO: Importa todas as suas ações
+
+import com.rpg.combate.*;
+import com.rpg.itens.Armas.Herois.Bárbaros.CuteloDeCaça;
+import com.rpg.personagens.*;
+
+// ADICIONADO: Importa todas as suas ações
 
 public class Barbaro extends Heroi {
     // Boolean furia;     // REMOVIDO

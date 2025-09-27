@@ -1,7 +1,7 @@
 package com.rpg.combate;
 
-import Personagens.Combatente;
-import Personagens.Herois.Arqueira;
+import com.rpg.personagens.*;
+import com.rpg.personagens.Herois.*;
 
 public class OlhosDeAguia implements AcaoCombate {
 

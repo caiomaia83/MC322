@@ -1,8 +1,7 @@
 package com.rpg.itens.Armas.Monstros.Esqueletos.Incomum;
 
-import Itens.Armas.ArmasBase.Espada;
-import Jogo.Classificadores.OrigemDoItem;
-import Jogo.Classificadores.Raridade;
+import com.rpg.itens.Armas.ArmasBase.*;
+import com.rpg.itens.Classificadores.*;
 
 public class AlfangeDoFosso extends Espada{
     private boolean ferrugem; // Atributo único dessa lâmina

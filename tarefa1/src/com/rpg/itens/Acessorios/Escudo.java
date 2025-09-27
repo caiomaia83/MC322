@@ -1,10 +1,7 @@
 package com.rpg.itens.Acessorios;
 
-import Itens.Item;
-import Jogo.Classificadores.OrigemDoItem;
-import Jogo.Classificadores.Raridade;
-import Jogo.Classificadores.TipoDeItem;
-
+import com.rpg.itens.*;
+import com.rpg.itens.Classificadores.*;
 public class Escudo extends Item{
     
     private String nome;

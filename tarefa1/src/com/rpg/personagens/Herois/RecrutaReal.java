@@ -1,15 +1,13 @@
 package com.rpg.personagens.Herois;
 
+import java.util.ArrayList;
 import java.util.Random;
-import java.util.ArrayList; 
 
-import Itens.Acessorios.Escudo;
-import Itens.Acessorios.RecrutasReais.EscudoDeMadeira;
-import Itens.Armas.Herois.RecrutasReais.LancaDeTreinamento;
-import Personagens.Combatente;
-import Personagens.Heroi;
-import Personagens.Personagem;
-import Jogo.ataques.*; 
+import com.rpg.combate.*;
+import com.rpg.itens.Acessorios.Escudo;
+import com.rpg.itens.Acessorios.RecrutasReais.*;
+import com.rpg.itens.Armas.Herois.RecrutasReais.*;
+import com.rpg.personagens.*;
 
 public class RecrutaReal extends Heroi {
 

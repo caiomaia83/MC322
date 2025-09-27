@@ -1,6 +1,6 @@
 package com.rpg.cenario;
 
-import Personagens.Herois.Heroi;
+import com.rpg.personagens.*;
 
 public interface Evento {
   

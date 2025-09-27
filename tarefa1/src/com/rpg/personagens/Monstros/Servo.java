@@ -1,16 +1,13 @@
 package com.rpg.personagens.Monstros;
 
-import java.util.List;
 import java.util.ArrayList; // ADICIONADO
-import java.util.Random;
+import java.util.List;
 
-import Itens.Armas.Arma;
-import Jogo.Classificadores.OrigemDoItem;
-import Jogo.Loot.ConstrutorDeTabelaDeLoot;
-import Jogo.Loot.GerenciadorDeLoot;
-import Personagens.Monstro;
-import Personagens.Personagem;
-import Jogo.ataques.*; // ADICIONADO
+import com.rpg.combate.Arranhao;
+import com.rpg.itens.Armas.*;
+import com.rpg.itens.Classificadores.*;
+import com.rpg.itens.Loot.*;
+import com.rpg.personagens.Monstro;
 
 public class Servo extends Monstro {
     // private Boolean arranhao; // REMOVIDO

@@ -1,9 +1,8 @@
 package com.rpg.combate;
 
 
-import Personagens.Combatente;
-import Personagens.Heroi;
-import Personagens.Personagem;
+import com.rpg.personagens.*;
+import com.rpg.personagens.Heroi;
 
 public class InvestidaReal implements AcaoCombate {
 

@@ -1,8 +1,7 @@
 package com.rpg.itens.Armas.Herois.Bárbaros;
 
-import Itens.Armas.ArmasBase.Espada;
-import Jogo.Classificadores.OrigemDoItem;
-import Jogo.Classificadores.Raridade;
+import com.rpg.itens.Armas.ArmasBase.*;
+import com.rpg.itens.Classificadores.*;
 
 public class CuteloDeCaça extends Espada {
     public CuteloDeCaça() {

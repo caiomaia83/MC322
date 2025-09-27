@@ -1,9 +1,7 @@
 package com.rpg.combate;
 
 
-import Personagens.Combatente;
-import Personagens.Personagem;
-import Jogo.ataques.*;
+import com.rpg.personagens.*;
 
 public class AtaqueDesvairado implements AcaoCombate {
 

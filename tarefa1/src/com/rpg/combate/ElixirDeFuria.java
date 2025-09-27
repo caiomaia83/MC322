@@ -1,7 +1,6 @@
-package Jogo.ataques; // Use o nome do seu pacote
-
-import Personagens.Combatente;
-import Personagens.Heroi;
+package com.rpg.combate;
+import com.rpg.combate.*;
+import com.rpg.personagens.*;
 
 public class ElixirDeFuria implements AcaoCombate {
 

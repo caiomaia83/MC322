@@ -1,8 +1,7 @@
 package com.rpg.itens.Armas.ArmasBase;
 
-import Itens.Armas.Arma;
-import Jogo.Classificadores.OrigemDoItem;
-import Jogo.Classificadores.Raridade;
+import com.rpg.itens.Armas.*;
+import com.rpg.itens.Classificadores.*;
 
 public class Arco extends Arma{
     public Arco(String nome, Raridade raridade, OrigemDoItem origem, int minNivel, int dano, float velocidadeDeAtaque) {

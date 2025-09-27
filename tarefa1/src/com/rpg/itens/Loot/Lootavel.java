@@ -1,6 +1,6 @@
 package com.rpg.itens.Loot;
 
-import Itens.IItem; 
+import com.rpg.itens.*;
 
 public interface Lootavel {
 

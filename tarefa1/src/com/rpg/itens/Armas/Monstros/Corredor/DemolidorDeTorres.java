@@ -1,8 +1,7 @@
 package com.rpg.itens.Armas.Monstros.Corredor;
 
-import Itens.Armas.ArmasBase.Martelo;
-import Jogo.Classificadores.OrigemDoItem;
-import Jogo.Classificadores.Raridade;
+import com.rpg.itens.Armas.ArmasBase.*;
+import com.rpg.itens.Classificadores.*;
 
 public class DemolidorDeTorres extends Martelo{
     public DemolidorDeTorres() {

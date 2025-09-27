@@ -1,8 +1,7 @@
 package com.rpg.combate;
 
 
-import Personagens.Combatente;
-import Personagens.Personagem;
+import com.rpg.personagens.*;
 
 public class EstocadaSimples implements AcaoCombate {
 

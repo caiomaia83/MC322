@@ -1,8 +1,7 @@
 package com.rpg.itens.Acessorios.RecrutasReais;
 
-import Itens.Acessorios.Escudo;
-import Jogo.Classificadores.OrigemDoItem;
-import Jogo.Classificadores.Raridade;
+import com.rpg.itens.Acessorios.*;
+import com.rpg.itens.Classificadores.*;
 
 public class EscudoDeMadeira extends Escudo{
     public EscudoDeMadeira() {

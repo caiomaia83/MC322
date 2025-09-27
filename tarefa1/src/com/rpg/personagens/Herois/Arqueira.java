@@ -1,10 +1,10 @@
 package com.rpg.personagens.Herois;
 
 import java.util.ArrayList; // ADICIONADO
-import Itens.Armas.Herois.Arqueira.ArcoCurto;
-import Personagens.Heroi;
-import Personagens.Personagem;
-import Jogo.ataques.*; // ADICIONADO: Importa todas as suas ações
+
+import com.rpg.combate.*;
+import com.rpg.itens.Armas.Herois.Arqueira.*;
+import com.rpg.personagens.Heroi;
 
 public class Arqueira extends Heroi {
     public float precisao; // Deixei público para o ataque acessar, ou podemos criar um getPrecisao()

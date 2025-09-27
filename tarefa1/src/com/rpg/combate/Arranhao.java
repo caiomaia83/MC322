@@ -2,8 +2,8 @@ package com.rpg.combate;
 
 
 import java.util.Random;
-import Personagens.Combatente;
-import Personagens.Personagem;
+
+import com.rpg.personagens.*;
 
 // O nome da classe agora é Arranhao
 public class Arranhao implements AcaoCombate {

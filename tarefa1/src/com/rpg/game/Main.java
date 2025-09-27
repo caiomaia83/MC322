@@ -2,16 +2,12 @@ package com.rpg.game;
 
 import java.util.List;
 
-import com.rpg.cenario.ConstrutorDeCenario;
-import com.rpg.cenario.Fase;
-import com.rpg.cenario.GeradorDeFases;
-import com.rpg.cenario.IFase;
-import com.rpg.combate.AcaoCombate;
-import com.rpg.itens.IItem;
-import com.rpg.itens.Loot.Lootavel;
-import com.rpg.personagens.Heroi;
-import com.rpg.personagens.Monstro;
-import com.rpg.personagens.Herois.Barbaro;
+import com.rpg.cenario.*;
+import com.rpg.combate.*;
+import com.rpg.itens.*;
+import com.rpg.itens.Loot.*;
+import com.rpg.personagens.*;
+import com.rpg.personagens.Herois.*;
 
 public class Main {
 

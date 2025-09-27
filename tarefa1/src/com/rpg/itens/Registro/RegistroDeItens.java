@@ -2,16 +2,17 @@ package com.rpg.itens.Registro;
 
 import java.util.ArrayList;
 import java.util.List;
-import Itens.*;
-import Itens.Acessorios.RecrutasReais.*;
-import Itens.Armas.Herois.Arqueira.*;
-import Itens.Armas.Herois.Bárbaros.*;
-import Itens.Armas.Herois.RecrutasReais.*;
-import Itens.Armas.Monstros.Corredor.DemolidorDeTorres;
-import Itens.Armas.Monstros.Esqueletos.Comum.*;
-import Itens.Armas.Monstros.Esqueletos.Incomum.*;
-import Itens.Armas.Monstros.Servos.Comum.GarraDeServo;
-import Itens.Armas.Monstros.Servos.Incomum.FerraoDeServo;
+
+import com.rpg.itens.*;
+import com.rpg.itens.Acessorios.RecrutasReais.*;
+import com.rpg.itens.Armas.Herois.Arqueira.*;
+import com.rpg.itens.Armas.Herois.Bárbaros.*;
+
+import com.rpg.itens.Armas.Herois.RecrutasReais.*;
+import com.rpg.itens.Armas.Monstros.Corredor.*;
+import com.rpg.itens.Armas.Monstros.Esqueletos.Comum.*;
+import com.rpg.itens.Armas.Monstros.Esqueletos.Incomum.*;
+import com.rpg.itens.Armas.Monstros.Servos.Incomum.*;
 
 
 // Um registro geral de todos os itens no jogo para facilitar a construcao de novos metodos 

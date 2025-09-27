@@ -1,13 +1,6 @@
 package com.rpg.cenario;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import Personagens.Heroi;
-import Personagens.Monstro;
-import Personagens.Monstros.Corredor;
-import Personagens.Monstros.Esqueleto;
-import Personagens.Monstros.Servo;
+import com.rpg.personagens.*;
 
 public enum TipoCenario {
 

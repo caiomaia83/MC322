@@ -1,7 +1,6 @@
 package com.rpg.cenario;
 
-import Personagens.Heroi;
-import Fases.TipoCenario; // Usando o Enum que você colocou aqui
+import com.rpg.personagens.*;
 
 public interface IFase {
   

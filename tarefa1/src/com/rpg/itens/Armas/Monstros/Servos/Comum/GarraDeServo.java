@@ -1,8 +1,7 @@
 package com.rpg.itens.Armas.Monstros.Servos.Incomum;
 
-import Itens.Armas.ArmasBase.Adaga;
-import Jogo.Classificadores.OrigemDoItem;
-import Jogo.Classificadores.Raridade;
+import com.rpg.itens.Armas.ArmasBase.*;
+import com.rpg.itens.Classificadores.*;
 
 public class GarraDeServo extends Adaga{
     public GarraDeServo() {

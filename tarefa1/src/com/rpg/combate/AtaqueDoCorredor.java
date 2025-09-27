@@ -2,9 +2,9 @@ package com.rpg.combate;
 
 
 import java.util.Random;
-import Personagens.Combatente;
-import Personagens.Monstros.Corredor; // Importamos a classe Corredor
-import Personagens.Personagem;
+
+import com.rpg.personagens.*;
+import com.rpg.personagens.Monstros.*;
 
 public class AtaqueDoCorredor implements AcaoCombate {
 

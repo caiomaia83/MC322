@@ -1,8 +1,7 @@
 package com.rpg.itens.Armas.Herois.Arqueira;
 
-import Itens.Armas.ArmasBase.Arco;
-import Jogo.Classificadores.OrigemDoItem;
-import Jogo.Classificadores.Raridade;
+import com.rpg.itens.Armas.ArmasBase.*;
+import com.rpg.itens.Classificadores.*;
 
 public class ArcoCurto extends Arco{
     public ArcoCurto() {

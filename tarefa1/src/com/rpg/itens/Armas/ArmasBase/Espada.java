@@ -1,8 +1,7 @@
 package com.rpg.itens.Armas.ArmasBase;
 
-import Itens.Armas.Arma;
-import Jogo.Classificadores.OrigemDoItem;
-import Jogo.Classificadores.Raridade;
+import com.rpg.itens.Armas.*;
+import com.rpg.itens.Classificadores.*;
 // A espada é uma das armas mais básicas, e não possui um atributo próprio  universal
 public class Espada extends Arma {
     

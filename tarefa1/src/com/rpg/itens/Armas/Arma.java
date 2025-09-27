@@ -1,8 +1,7 @@
 package com.rpg.itens.Armas;
-import Itens.Item;
-import Jogo.Classificadores.OrigemDoItem;
-import Jogo.Classificadores.Raridade;
-import Jogo.Classificadores.TipoDeItem;
+
+import com.rpg.itens.*;
+import com.rpg.itens.Classificadores.*;
 
 public abstract class Arma extends Item {
     // Atributos essenciais

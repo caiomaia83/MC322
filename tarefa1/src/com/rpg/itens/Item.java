@@ -1,8 +1,7 @@
 package com.rpg.itens;
-import Jogo.Classificadores.OrigemDoItem;
-import Jogo.Classificadores.Raridade;
-import Jogo.Classificadores.TipoDeItem;
-import Itens.IItem;
+
+import com.rpg.itens.Classificadores.*;
+
 
 
 // Classe de itens ( Armas, consumiveis, armaduras )

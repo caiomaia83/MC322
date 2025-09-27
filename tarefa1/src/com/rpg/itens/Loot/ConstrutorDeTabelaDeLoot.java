@@ -3,10 +3,10 @@ package com.rpg.itens.Loot;
 import java.util.ArrayList;
 import java.util.List;
 
-import Jogo.Classificadores.OrigemDoItem;
-import Jogo.Registro.RegistroDeItens;
-import Itens.*;
-import Itens.Armas.Arma;
+import com.rpg.itens.*;
+import com.rpg.itens.Armas.*;
+import com.rpg.itens.Classificadores.*;
+import com.rpg.itens.Registro.*;
 
 
 // Constroi os itens de um persongem atraves do registro geral de itens 

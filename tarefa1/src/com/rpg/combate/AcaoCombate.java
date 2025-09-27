@@ -1,7 +1,7 @@
 package com.rpg.combate;
 
 
-import Personagens.Combatente;
+import com.rpg.personagens.*;
 
 public interface AcaoCombate {
 
