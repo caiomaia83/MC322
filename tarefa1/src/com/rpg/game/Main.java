@@ -1,71 +1,125 @@
 package com.rpg.game;
 
 import java.util.List;
-
 import com.rpg.cenario.*;
 import com.rpg.combate.*;
 import com.rpg.itens.*;
 import com.rpg.itens.Loot.*;
 import com.rpg.personagens.*;
 import com.rpg.personagens.Herois.*;
+import com.rpg.util.*;
+import java.util.InputMismatchException;
+import com.rpg.game.*;
 
 public class Main {
 
     public static void main(String[] args) {
 
+        System.out.println("=====================================================");
+        System.out.println("          BEM-VINDO ÀS ARENAS!!!");
+        System.out.println("=====================================================");
+
         // 1. CRIAÇÃO DO HERÓI
-        Heroi heroi = new Barbaro("Conan, o Bárbaro", 150, 20);
+        Heroi heroi = new Barbaro("Conan, o Bárbaro", 150, 30);
+        
+        Menu menuPrincipal = new Menu();
+        boolean sair = false;
+
+        while (!sair) {
+            int opcao = menuPrincipal.exibir();
+
+            switch (opcao) {
+                case 1:
+                    iniciarAventura(heroi);
+                    if (!heroi.estaVivo()) {
+                        sair = true;
+                    }
+                    break;
+                case 2:
+                    exibirStatusHeroi(heroi);
+                    break;
+                case 0:
+                    sair = true;
+                    break;
+                default:
+                    if (opcao != -1) {
+                        System.out.println("Opção inválida! Por favor, tente novamente.");
+                    }
+                    break;
+            }
+        }
+        InputManager.fecharScanner();
+        System.out.println("=====================================================");
+        System.out.println("                  FIM DE JOGO");
+        System.out.println("=====================================================");
+    }
+
+    private static Dificuldade selecionarDificuldade() {
+    System.out.println("\nSELECIONE A DIFICULDADE DA AVENTURA:");
+    System.out.println("[1] Fácil");
+    System.out.println("[2] Normal");
+    System.out.println("[3] Difícil");
+
+    // Usamos a nossa ferramenta para garantir que o jogador digite um número entre 1 e 3.
+    // O InputManager lida com todos os possíveis erros (digitar texto, número fora do intervalo, etc).
+    int escolha = InputManager.lerInteiro("> ", 1, 3);
+
+    // Convertemos a resposta numérica no Enum correspondente
+    switch (escolha) {
+        case 1:
+            return Dificuldade.FACIL;
+        case 3:
+            return Dificuldade.DIFICIL;
+        default: // case 2
+            return Dificuldade.MEDIO;
+    }
+}
+
+    public static void iniciarAventura(Heroi heroi) {
+        if (!heroi.estaVivo()) {
+            System.out.println(heroi.getNome() + " está incapacitado e não pode lutar.");
+            return;
+        }
 
         // 2. GERAÇÃO DO MUNDO
         GeradorDeFases gerador = new ConstrutorDeCenario(); 
         int numeroDeFases = 3;
-        List<IFase> masmorra = gerador.gerar(numeroDeFases);
+        Dificuldade dificuldadeEscolhida = selecionarDificuldade();
+        List<IFase> masmorra = gerador.gerar(numeroDeFases, dificuldadeEscolhida);
 
         // 3. APRESENTAÇÃO DA AVENTURA
-        System.out.println("=====================================================");
-        System.out.println("          O DESAFIO DAS ARENAS!!!");
-        System.out.println("=====================================================");
-        System.out.println(heroi.getNome() + ", um corajoso " + heroi.getClass().getSimpleName() + ", adentra a escuridão!");
+        System.out.println("\n" + heroi.getNome() + ", um corajoso " + heroi.getClass().getSimpleName() + ", adentra a escuridão!");
         System.out.println("Ele deve sobreviver a " + numeroDeFases + " fase(s) para clamar a glória!");
-        System.out.println("\n--- STATUS INICIAL DO HERÓI ---");
-        heroi.exibirStatus();
-        System.out.println("---------------------------------");
-
+        
         // 4. LOOP PRINCIPAL DO JOGO
         for (IFase faseAtual : masmorra) {
-            
             faseAtual.iniciar(heroi);
-
-            if (!heroi.estaVivo()) {
-                break;
-            }
+            if (!heroi.estaVivo()) break;
             
             List<Monstro> monstrosDaFase = ((Fase) faseAtual).getMonstros();
-
             for (Monstro monstroAtual : monstrosDaFase) {
                 if (!monstroAtual.estaVivo()) continue;
 
                 System.out.println("\n" + heroi.getNome() + " encara um " + monstroAtual.getNome() + "!");
 
                 while (heroi.estaVivo() && monstroAtual.estaVivo()) {
+
+                    heroi.exibirStatus();
+                    monstroAtual.exibirStatus();
                     // --- TURNO DO HERÓI ---
                     System.out.println("\n--- Turno do " + heroi.getNome() + " ---");
                     AcaoCombate acaoHeroi = heroi.escolherAcao(monstroAtual);
-                    if (acaoHeroi != null) {
-                        acaoHeroi.executar(heroi, monstroAtual);
-                    } else {
-                        System.out.println(heroi.getNome() + " não fez nada.");
-                    }
+                    if (acaoHeroi != null) acaoHeroi.executar(heroi, monstroAtual);
+                    else System.out.println(heroi.getNome() + " não fez nada.");
 
                     // --- TURNO DO MONSTRO ---
                     if (monstroAtual.estaVivo()) {
+                        heroi.exibirStatus();
+                        monstroAtual.exibirStatus();
                         System.out.println("\n--- Turno do " + monstroAtual.getNome() + " ---");
                         AcaoCombate acaoMonstro = monstroAtual.escolherAcao(heroi);
-                        if (acaoMonstro != null) {
-                            acaoMonstro.executar(monstroAtual, heroi);
-                        } else {
-                            System.out.println(monstroAtual.getNome() + " não fez nada.");
-                        }
+                        if (acaoMonstro != null) acaoMonstro.executar(monstroAtual, heroi);
+                        else System.out.println(monstroAtual.getNome() + " não fez nada.");
                     }
                 } // FIM DO COMBATE
 
@@ -73,35 +127,37 @@ public class Main {
                 if (!monstroAtual.estaVivo() && heroi.estaVivo()) {
                     System.out.println("\nO " + monstroAtual.getNome() + " foi derrotado!");
                     heroi.ganharExperiencia(monstroAtual); 
-
                     // LÓGICA DE LOOT ADICIONADA
                     if (monstroAtual instanceof Lootavel) {
                         IItem itemDropado = ((Lootavel) monstroAtual).droparLoot();
-                        if (itemDropado != null) {
-                            System.out.println("Você obteve: " + itemDropado.getNome() + "!");
-                        }
+                        if (itemDropado != null) System.out.println("Você obteve: " + itemDropado.getNome() + "!");
                     }
                 }
-
-                if (!heroi.estaVivo()) { break; }
+                if (!heroi.estaVivo()) break;
             }
-
-            if (!heroi.estaVivo()) { break; }
+            if (!heroi.estaVivo()) break;
 
             if (faseAtual.isConcluida()) {
                 System.out.println("\n--- FASE " + ((Fase) faseAtual).getNivel() + " CONCLUÍDA! ---");
-                heroi.exibirStatus();
-                System.out.println("---------------------------------");
             }
         }
 
         // 5. CONCLUSÃO DO JOGO
-        System.out.println("\n=====================================================");
+        System.out.println("\n-----------------------------------------------------");
         if (heroi.estaVivo()) {
             System.out.println("  VITÓRIA! " + heroi.getNome() + " conquistou a masmorra!");
+           
         } else {
-            System.out.println("  GAME OVER! " + heroi.getNome() + " tombou bravamente na escuridão...");
+            System.out.println("  GAME OVER! " + heroi.getNome() + " tombou bravamente...");
+            
         }
-        System.out.println("=====================================================");
+        System.out.println("-----------------------------------------------------");
+        return;
+    }
+
+    public static void exibirStatusHeroi(Heroi heroi) {
+        System.out.println("\n--- STATUS ATUAL DO HERÓI ---");
+        heroi.exibirStatus();
+        System.out.println("---------------------------------");
     }
 }

@@ -1,4 +1,4 @@
-package Jogo.Classificadores;
+package com.rpg.itens.Classificadores;
 
 public enum TipoDeDano {
     CORTE,
