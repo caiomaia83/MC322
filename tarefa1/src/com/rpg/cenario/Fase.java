@@ -39,6 +39,9 @@ public class Fase implements IFase {
         // Usando o efeito que colocamos no Enum!
         this.tipoCenario.aplicarEfeitos(heroi);
 
+        heroi.receberCura(heroi.getPontosDeVidaTotal());
+        heroi.exibirStatus();
+
         System.out.println("\nMonstros a serem derrotados:");
         for (Monstro monstro : this.monstros) {
             monstro.exibirStatus();

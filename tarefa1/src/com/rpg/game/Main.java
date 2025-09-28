@@ -9,6 +9,7 @@ import com.rpg.personagens.*;
 import com.rpg.personagens.Herois.*;
 import com.rpg.util.*;
 import java.util.InputMismatchException;
+import com.rpg.game.*;
 
 public class Main {
 
@@ -19,7 +20,7 @@ public class Main {
         System.out.println("=====================================================");
 
         // 1. CRIAÇÃO DO HERÓI
-        Heroi heroi = new Barbaro("Conan, o Bárbaro", 150, 20);
+        Heroi heroi = new Barbaro("Conan, o Bárbaro", 150, 30);
         
         Menu menuPrincipal = new Menu();
         boolean sair = false;
@@ -37,14 +38,7 @@ public class Main {
                 case 2:
                     exibirStatusHeroi(heroi);
                     break;
-                case 3:
-                    System.out.println("Loja de Itens (não implementado).");
-                    break;
-                case 4:
-                    System.out.println("Salvar Jogo (não implementado).");
-                    break;
                 case 0:
-                    System.out.println("Saindo do jogo. Até mais!");
                     sair = true;
                     break;
                 default:
@@ -54,12 +48,32 @@ public class Main {
                     break;
             }
         }
-        
-        menuPrincipal.fechar();
+        InputManager.fecharScanner();
         System.out.println("=====================================================");
         System.out.println("                  FIM DE JOGO");
         System.out.println("=====================================================");
     }
+
+    private static Dificuldade selecionarDificuldade() {
+    System.out.println("\nSELECIONE A DIFICULDADE DA AVENTURA:");
+    System.out.println("[1] Fácil");
+    System.out.println("[2] Normal");
+    System.out.println("[3] Difícil");
+
+    // Usamos a nossa ferramenta para garantir que o jogador digite um número entre 1 e 3.
+    // O InputManager lida com todos os possíveis erros (digitar texto, número fora do intervalo, etc).
+    int escolha = InputManager.lerInteiro("> ", 1, 3);
+
+    // Convertemos a resposta numérica no Enum correspondente
+    switch (escolha) {
+        case 1:
+            return Dificuldade.FACIL;
+        case 3:
+            return Dificuldade.DIFICIL;
+        default: // case 2
+            return Dificuldade.MEDIO;
+    }
+}
 
     public static void iniciarAventura(Heroi heroi) {
         if (!heroi.estaVivo()) {
@@ -70,7 +84,8 @@ public class Main {
         // 2. GERAÇÃO DO MUNDO
         GeradorDeFases gerador = new ConstrutorDeCenario(); 
         int numeroDeFases = 3;
-        List<IFase> masmorra = gerador.gerar(numeroDeFases, Dificuldade.MEDIO);
+        Dificuldade dificuldadeEscolhida = selecionarDificuldade();
+        List<IFase> masmorra = gerador.gerar(numeroDeFases, dificuldadeEscolhida);
 
         // 3. APRESENTAÇÃO DA AVENTURA
         System.out.println("\n" + heroi.getNome() + ", um corajoso " + heroi.getClass().getSimpleName() + ", adentra a escuridão!");
@@ -88,6 +103,9 @@ public class Main {
                 System.out.println("\n" + heroi.getNome() + " encara um " + monstroAtual.getNome() + "!");
 
                 while (heroi.estaVivo() && monstroAtual.estaVivo()) {
+
+                    heroi.exibirStatus();
+                    monstroAtual.exibirStatus();
                     // --- TURNO DO HERÓI ---
                     System.out.println("\n--- Turno do " + heroi.getNome() + " ---");
                     AcaoCombate acaoHeroi = heroi.escolherAcao(monstroAtual);
@@ -96,6 +114,8 @@ public class Main {
 
                     // --- TURNO DO MONSTRO ---
                     if (monstroAtual.estaVivo()) {
+                        heroi.exibirStatus();
+                        monstroAtual.exibirStatus();
                         System.out.println("\n--- Turno do " + monstroAtual.getNome() + " ---");
                         AcaoCombate acaoMonstro = monstroAtual.escolherAcao(heroi);
                         if (acaoMonstro != null) acaoMonstro.executar(monstroAtual, heroi);
@@ -126,10 +146,13 @@ public class Main {
         System.out.println("\n-----------------------------------------------------");
         if (heroi.estaVivo()) {
             System.out.println("  VITÓRIA! " + heroi.getNome() + " conquistou a masmorra!");
+           
         } else {
             System.out.println("  GAME OVER! " + heroi.getNome() + " tombou bravamente...");
+            
         }
         System.out.println("-----------------------------------------------------");
+        return;
     }
 
     public static void exibirStatusHeroi(Heroi heroi) {

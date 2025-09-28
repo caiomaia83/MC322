@@ -55,9 +55,9 @@ public class ConstrutorDeCenario implements GeradorDeFases {
 
     private List<Monstro> criarBestiario() {
         List<Monstro> monstros = new ArrayList<>();
-        monstros.add(new Servo(50, 10, 10));
-        monstros.add(new Corredor(160, 30, 15, 10));
-        monstros.add(new Esqueleto(30, 8, 12));
+        monstros.add(new Servo(50, 10, 20));
+        monstros.add(new Corredor(150, 25, 30, 10));
+        monstros.add(new Esqueleto(30, 8, 15));
         return monstros;
     }
 }
