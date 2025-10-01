@@ -98,15 +98,15 @@ public abstract class Personagem implements Combatente{
     }
 
     public void receberCura(int cura) {
-    this.pontosDeVida += cura;
+        this.pontosDeVida += cura;
 
-    // Garante que a cura não ultrapasse a vida máxima
-    if (this.pontosDeVida > this.pontosDeVidaTotal) {
-        this.pontosDeVida = this.pontosDeVidaTotal;
+        // Garante que a cura não ultrapasse a vida máxima
+        if (this.pontosDeVida > this.pontosDeVidaTotal) {
+            this.pontosDeVida = this.pontosDeVidaTotal;
+        }
+
+        System.out.printf("%s recebeu %d de cura!\n", this.nome, cura);
     }
-
-    System.out.printf("%s recebeu %d de cura!\n", this.nome, cura);
-}
 
     public abstract AcaoCombate escolherAcao(Combatente alvo);
     

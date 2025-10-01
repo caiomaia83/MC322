@@ -8,8 +8,6 @@ import com.rpg.itens.Loot.*;
 import com.rpg.personagens.*;
 import com.rpg.personagens.Herois.*;
 import com.rpg.util.*;
-import java.util.InputMismatchException;
-import com.rpg.game.*;
 
 public class Main {
 
@@ -85,14 +83,14 @@ public class Main {
         GeradorDeFases gerador = new ConstrutorDeCenario(); 
         int numeroDeFases = 3;
         Dificuldade dificuldadeEscolhida = selecionarDificuldade();
-        List<IFase> masmorra = gerador.gerar(numeroDeFases, dificuldadeEscolhida);
+        List<InterfaceFase> masmorra = gerador.gerar(numeroDeFases, dificuldadeEscolhida);
 
         // 3. APRESENTAÇÃO DA AVENTURA
         System.out.println("\n" + heroi.getNome() + ", um corajoso " + heroi.getClass().getSimpleName() + ", adentra a escuridão!");
         System.out.println("Ele deve sobreviver a " + numeroDeFases + " fase(s) para clamar a glória!");
         
         // 4. LOOP PRINCIPAL DO JOGO
-        for (IFase faseAtual : masmorra) {
+        for (InterfaceFase faseAtual : masmorra) {
             faseAtual.iniciar(heroi);
             if (!heroi.estaVivo()) break;
             

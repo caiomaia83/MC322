@@ -9,16 +9,16 @@ import com.rpg.personagens.Monstros.*;
 import com.rpg.game.*;
 
 
-// Garanta que esta linha está EXATAMENTE assim
+
 public class ConstrutorDeCenario implements GeradorDeFases {
 
     public ConstrutorDeCenario() {}
 
     @Override
-    public List<IFase> gerar(int quantidadeDeFases, Dificuldade dificuldade) {
+    public List<InterfaceFase> gerar(int quantidadeDeFases, Dificuldade dificuldade) {
         System.out.println("Construindo o mundo com " + quantidadeDeFases + " fases...(Dificuldade: " + dificuldade + ")");
 
-        List<IFase> fasesGeradas = new ArrayList<>();
+        List<InterfaceFase> fasesGeradas = new ArrayList<>();
         List<TipoCenario> poolDeAmbientes = getAmbientes();
         List<Monstro> bestiario = criarBestiario();
         Random random = new Random();
@@ -41,7 +41,7 @@ public class ConstrutorDeCenario implements GeradorDeFases {
                 monstrosParaFase.add(monstro_pronto);
             }
 
-            IFase novaFase = new Fase(nivelAtual, ambienteAtual, monstrosParaFase);
+            InterfaceFase novaFase = new Fase(nivelAtual, ambienteAtual, monstrosParaFase);
             fasesGeradas.add(novaFase);
         }
 

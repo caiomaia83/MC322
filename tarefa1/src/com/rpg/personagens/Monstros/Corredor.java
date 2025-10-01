@@ -3,7 +3,7 @@ package com.rpg.personagens.Monstros;
 import java.util.ArrayList; // ADICIONADO
 
 import com.rpg.combate.*;
-import com.rpg.itens.Armas.Monstros.Corredor.*;
+import com.rpg.itens.Armas.ArmasMonstros.Corredor.*;
 import com.rpg.itens.Classificadores.*;
 import com.rpg.personagens.Monstro;
 

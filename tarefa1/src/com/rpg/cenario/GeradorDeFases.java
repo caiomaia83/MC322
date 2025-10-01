@@ -5,5 +5,5 @@ import com.rpg.game.*;
 
 public interface GeradorDeFases {
     
-    List<IFase> gerar(int quantidadeDeFases, Dificuldade dificuldade);
+    List<InterfaceFase> gerar(int quantidadeDeFases, Dificuldade dificuldade);
 }

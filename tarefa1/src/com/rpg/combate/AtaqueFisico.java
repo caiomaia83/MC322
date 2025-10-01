@@ -10,13 +10,10 @@ public void executar(Combatente usuario, Combatente alvo) {
         System.out.println(usuario.getNome() + " usa um Ataque Físico!");
 
         int danoTotal = 0;
-        // Verificamos se quem está atacando é um "Personagem"
+        
  
         if (usuario instanceof Personagem) {
             Personagem personagemUsuario = (Personagem) usuario;
-            
-            // Aqui usamos aquele método getDano() que você já tinha em Personagem!
-            // Ele já calcula a força + o dano da arma. Perfeito!
             danoTotal = personagemUsuario.getDano();
         }
 
