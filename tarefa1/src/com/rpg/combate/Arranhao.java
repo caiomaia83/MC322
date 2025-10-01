@@ -5,7 +5,6 @@ import java.util.Random;
 
 import com.rpg.personagens.*;
 
-// O nome da classe agora é Arranhao
 public class Arranhao implements AcaoCombate {
 
     @Override

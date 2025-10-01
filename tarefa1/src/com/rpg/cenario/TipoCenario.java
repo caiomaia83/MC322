@@ -38,7 +38,7 @@ public enum TipoCenario {
         }
     },
                 
-    Arena_Real("Nessa arena acontecem batalhas classicas onde ningeuem leva vantagem") {
+    Arena_Real("Nessa arena acontecem batalhas classicas onde ninguem leva vantagem") {
         @Override
         public void aplicarEfeitos(Heroi heroi){
             System.out.println(heroi.getNome() + " sente-se equilibrado e focado, sem efeitos adicionais nesta arena.");
@@ -101,10 +101,9 @@ public enum TipoCenario {
         }
     };
 
-    // 1. Atributo para guardar a descrição
     private final String descricao;
 
-    // 2. Construtor para inicializar a descrição
+    // Construtor para inicializar a descrição
     TipoCenario(String descricao) {
         this.descricao = descricao;
     }

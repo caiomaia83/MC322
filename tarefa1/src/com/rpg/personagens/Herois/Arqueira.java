@@ -3,7 +3,7 @@ package com.rpg.personagens.Herois;
 import java.util.ArrayList; // ADICIONADO
 
 import com.rpg.combate.*;
-import com.rpg.itens.Armas.Herois.Arqueira.*;
+import com.rpg.itens.Armas.ArmasHerois.Arqueira.*;
 import com.rpg.personagens.Heroi;
 
 public class Arqueira extends Heroi {

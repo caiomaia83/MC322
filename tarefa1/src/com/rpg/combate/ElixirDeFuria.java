@@ -1,5 +1,4 @@
 package com.rpg.combate;
-import com.rpg.combate.*;
 import com.rpg.personagens.*;
 
 public class ElixirDeFuria implements AcaoCombate {

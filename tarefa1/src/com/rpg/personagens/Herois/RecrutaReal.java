@@ -6,7 +6,7 @@ import java.util.Random;
 import com.rpg.combate.*;
 import com.rpg.itens.Acessorios.Escudo;
 import com.rpg.itens.Acessorios.RecrutasReais.*;
-import com.rpg.itens.Armas.Herois.RecrutasReais.*;
+import com.rpg.itens.Armas.ArmasHerois.RecrutasReais.*;
 import com.rpg.personagens.*;
 
 public class RecrutaReal extends Heroi {
