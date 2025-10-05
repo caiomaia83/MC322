@@ -5,7 +5,12 @@ import java.util.Random;
 import com.rpg.combate.*;
 import com.rpg.itens.Armas.*;
 import com.rpg.exceptions.*;
-
+/**
+ * Representa a base para todos heróis jogáveis do jogo
+ * 
+ * Esta classe abstrata estende {@link Personagem} e adiciona mecânicas
+ * exclusivas aos heróis, como sistema de níveis, experiência e sorte.
+ */
 public abstract class Heroi extends Personagem {
     private int nivel;
     private int experiencia;
@@ -22,6 +27,12 @@ public abstract class Heroi extends Personagem {
         this.sorte = 0.0f;
     }
 
+    /**
+     * Adiciona experiência ao herói com base no XP concedido por um monstro derrotado.
+     * Após ganhar experiência, verifica se o herói pode subir de nível.
+     * 
+     * @param alvo o {@link Monstro} derrotado que concede a experiência
+     */
     public void ganharExperiencia(Monstro alvo) {
         this.experiencia += alvo.getXpConcedido();
         this.subirDeNivel();
@@ -33,7 +44,12 @@ public abstract class Heroi extends Personagem {
         System.out.printf("Nivel: %d\n", this.nivel);
         System.out.printf("Xp: %d / %d\n", this.experiencia, this.expProximoNivel);
     }
-
+    /**
+     * Verifica a experiência atual e sobe de nível se o necessário tiver sido atinjido
+     * 
+     * Este método pode ser chamado múltiplas vezes em sequêcia caso o herói ganhe
+     * experiência suficiente para subir múltiplos níveis de uma vez.
+     */
     private void subirDeNivel() {
         while (this.experiencia >= this.expProximoNivel) {
             // Guarda o xp que sobrou apos subir de nivel
@@ -54,7 +70,13 @@ public abstract class Heroi extends Personagem {
     }
 
 
-    // Equipa uma nova arma
+    /**
+     * Equipa uma nova arma no herói, substituindo a atual.
+     *
+     * @param novaArma A {@link Arma} a ser equipada.
+     * @throws NivelInsuficiente Se o nível do herói for menor que o nível mínimo
+     * requerido pela arma.
+     */
     public void equiparArma(Arma novaArma)throws NivelInsuficiente {
         // Verifica se o heroi possui nivel suficiente para a arma
         if(this.nivel >= novaArma.getMinNivel()) {
@@ -73,21 +95,34 @@ public abstract class Heroi extends Personagem {
         return this.sorte;
     }
 
-    // optei por fazer o aumento de nível individual á cada tipo de herói
+    /**
+     * Define como os atributos do herói (vida, força, etc.) aumentam ao subir de nível.
+     * <p>
+     * Este método é abstrato e deve ser implementado por cada subclasse de herói
+     * para especificar seus ganhos de atributos únicos.
+     * </p>
+     */
     protected abstract void aumentaAtributos();
 
+    /**
+     * {@inheritDoc}
+     * <p>
+     * A implementação atual para o herói escolhe uma ação de combate de forma aleatória
+     * a partir da sua lista de ações disponíveis.
+     * </p>
+     */
     public AcaoCombate escolherAcao(Combatente alvo) {
         // escolhe uma acao/ataque aleatoriamente
         if (this.acoes != null && !this.acoes.isEmpty()) {
-        Random random = new Random();
+            Random random = new Random();
 
-        int indiceAleatorio = random.nextInt(this.acoes.size());
+            int indiceAleatorio = random.nextInt(this.acoes.size());
 
-        return this.acoes.get(indiceAleatorio);
-    }
+            return this.acoes.get(indiceAleatorio);
+        }
     
-    // Medida de segurança caso o herói não tenha nenhuma ação.
-    return null;
+        // Medida de segurança caso o herói não tenha nenhuma ação.
+        return null;
     }
 
 }
