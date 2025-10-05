@@ -6,13 +6,37 @@ import java.util.List;
 
 import com.rpg.personagens.*;
 
-
+/**
+ * Representa uma fase ou nível do jogo.
+ * <p>
+ * Esta classe é responsável por gerenciar uma etapa do jogo, incluindo a
+ * geração de monstros com dificuldade escalonada, a aplicação de efeitos
+ * do cenário e a verificação das condições de vitória (todos os monstros derrotados).
+ * </p>
+ *
+ * @author Fernando e Caio
+ * @version 1.0
+ * @since 2025-10-05
+ */
 public class Fase implements InterfaceFase { 
     private int nivel;
     private TipoCenario tipoCenario; 
     private List<Monstro> monstros;
 
-    
+        
+    /**
+     * Constrói uma nova Fase, gerando encontros de monstros aleatórios e fortalecidos.
+     * <p>
+     * O construtor seleciona aleatoriamente até 3 monstros da lista base fornecida.
+     * Em seguida, calcula um fator de dificuldade com base no nível da fase e usa o
+     * método {@link Monstro#criarCopiaFortalecida(double)} para criar versões
+     * mais fortes dos monstros selecionados, que serão os inimigos reais da fase.
+     * </p>
+     *
+     * @param nivel O nível desta fase, usado para escalar a dificuldade dos monstros.
+     * @param tipoCenario O cenário da fase, que pode aplicar efeitos especiais.
+     * @param monstrosBase Uma lista de "modelos" de monstros para sortear os inimigos da fase.
+     */
     public Fase(int nivel, TipoCenario tipoCenario, List<Monstro> monstrosBase) {
         this.nivel = nivel;
         this.tipoCenario = tipoCenario;
@@ -28,7 +52,14 @@ public class Fase implements InterfaceFase {
             this.monstros.add(monstroFortalecido);
         }
     }
-
+    /**
+     * {@inheritDoc}
+     * 
+     * Prepara e exibe o início da fase para o jogador. Este método cura
+     * completamente o herói, aplica os efeitos do cenário e mostra o status
+     * inicial de todos os combatentes.
+     * 
+     */
     @Override
     public void iniciar(Heroi heroi) {
         System.out.println("\n--- FASE " + this.nivel + ": " + this.tipoCenario.name().replace("_", " ") + " ---");
