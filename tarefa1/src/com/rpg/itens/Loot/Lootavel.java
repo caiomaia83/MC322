@@ -4,5 +4,5 @@ import com.rpg.itens.*;
 
 public interface Lootavel {
 
-    IItem droparLoot();
+    InterfaceItem droparLoot();
 }

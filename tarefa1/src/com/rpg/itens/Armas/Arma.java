@@ -3,6 +3,17 @@ package com.rpg.itens.Armas;
 import com.rpg.itens.*;
 import com.rpg.itens.Classificadores.*;
 
+/**
+ * Classe abstrata que serve como base para todas as armas do jogo.
+ * <p>
+ * Ela estende a classe {@link Item}, adicionando atributos específicos de
+ * combate como dano, nível mínimo para uso, velocidade de ataque e alcance.
+ * </p>
+ *
+ * @author Fernando e Caio
+ * @version 1.0
+ * @since 2025-10-05
+ */
 public abstract class Arma extends Item {
     // Atributos essenciais
     private int minNivel;

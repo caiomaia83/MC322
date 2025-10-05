@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Random;
 
 import com.rpg.combate.AcaoCombate;
-import com.rpg.itens.IItem;
+import com.rpg.itens.InterfaceItem;
 import com.rpg.itens.Armas.Arma;
 import com.rpg.itens.Classificadores.*;
 import com.rpg.itens.Loot.*;
@@ -40,10 +40,10 @@ public abstract class Monstro extends Personagem implements Lootavel {
      * Este método implementa a interface {@link Lootavel}, utilizando um fator de
      * sorte aleatório para decidir qual item, se houver, será dropado.
      * 
-     * @return Um {@link IItem} dropado pelo monstro, ou {@code null} se nada for dropado.
+     * @return Um {@link InterfaceItem} dropado pelo monstro, ou {@code null} se nada for dropado.
      */
     @Override
-    public IItem droparLoot() {
+    public InterfaceItem droparLoot() {
         // Este método vai "adaptar" a chamada para o seu método já existente.
         
         Random random = new Random();

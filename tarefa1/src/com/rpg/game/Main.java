@@ -127,7 +127,7 @@ public class Main {
                     heroi.ganharExperiencia(monstroAtual); 
                     // LÓGICA DE LOOT ADICIONADA
                     if (monstroAtual instanceof Lootavel) {
-                        IItem itemDropado = ((Lootavel) monstroAtual).droparLoot();
+                        InterfaceItem itemDropado = ((Lootavel) monstroAtual).droparLoot();
                         if (itemDropado != null) System.out.println("Você obteve: " + itemDropado.getNome() + "!");
                     }
                 }

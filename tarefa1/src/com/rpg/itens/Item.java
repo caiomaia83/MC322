@@ -3,9 +3,18 @@ package com.rpg.itens;
 import com.rpg.itens.Classificadores.*;
 
 
-
-// Classe de itens ( Armas, consumiveis, armaduras )
-public class Item implements IItem{
+/**
+ * Classe base para todos os itens do jogo (armas, consumíveis, armaduras, etc.).
+ * <p>
+ * Esta classe implementa a interface {@link IItem} e contém os atributos
+ * comuns a todos os itens, como nome, descrição, raridade, origem e tipo.
+ * </p>
+ *
+ * @author Fernando e Caio
+ * @version 1.0
+ * @since 2025-10-05
+ */
+public class Item implements InterfaceItem{
     private String nome;
     private String descricao;
     private Raridade raridade;
