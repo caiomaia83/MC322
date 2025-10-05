@@ -1,7 +1,18 @@
 package com.rpg.cenario;
 
 import com.rpg.personagens.*;
-
+/**
+ * Enum que representa os diferentes tipos de cenários ou arenas do jogo.
+ * <p>
+ * Cada cenário possui uma descrição única e um efeito especial que é aplicado
+ * ao {@link Heroi} no início de uma fase. Este é um exemplo de "enum rico",
+ * onde cada constante encapsula dados e comportamento.
+ * </p>
+ *
+ * @author Fernando e Caio
+ * @version 1.0
+ * @since 2025-10-05
+ */
 public enum TipoCenario {
 
 

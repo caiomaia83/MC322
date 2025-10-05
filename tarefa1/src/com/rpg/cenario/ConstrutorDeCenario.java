@@ -8,11 +8,30 @@ import com.rpg.personagens.Monstro;
 import com.rpg.personagens.Monstros.*;
 import com.rpg.game.*;
 
-
+/**
+ * Implementação concreta de {@link GeradorDeFases} que constrói o mundo do jogo.
+ * <p>
+ * Esta classe é a fábrica responsável por criar a sequência de fases de uma
+ * partida. Ela seleciona ambientes, sorteia monstros de um bestiário pré-definido
+ * e os fortalece com base na dificuldade escolhida pelo jogador.
+ * </p>
+ *
+ * @author Fernando e Caio
+ * @version 1.0
+ * @since 2025-10-05
+ */
 public class ConstrutorDeCenario implements GeradorDeFases {
 
     public ConstrutorDeCenario() {}
-
+    /**
+     * {@inheritDoc}
+     * <p>
+     * Gera as fases iterativamente. Em cada iteração, um ambiente é selecionado,
+     * um número aleatório de monstros (2 ou 3) é sorteado do bestiário, e cada
+     * monstro é fortalecido usando o multiplicador da dificuldade do jogo antes
+     * de ser adicionado a uma nova instância de {@link Fase}.
+     * </p>
+     */
     @Override
     public List<InterfaceFase> gerar(int quantidadeDeFases, Dificuldade dificuldade) {
         System.out.println("Construindo o mundo com " + quantidadeDeFases + " fases...(Dificuldade: " + dificuldade + ")");
