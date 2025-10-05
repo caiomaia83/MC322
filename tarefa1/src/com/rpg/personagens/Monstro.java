@@ -24,16 +24,15 @@ public abstract class Monstro extends Personagem implements Lootavel {
         this.listaDearmasParaLargar = ConstrutorDeTabelaDeLoot.constroiListaDeArmas(origem); // Constrói uma lista de armas 
     }
     
-    // --- NOVO MÉTODO OBRIGATÓRIO DA INTERFACE Lootavel ---
+    
     @Override
     public IItem droparLoot() {
         // Este método vai "adaptar" a chamada para o seu método já existente.
         
-        // Como não temos a sorte do jogador aqui, vamos gerar uma sorte aleatória.
         Random random = new Random();
         float sorteGerada = random.nextFloat(); // Gera um número entre 0.0 e 1.0
 
-        // Chama o seu método original 'largaArma' com a sorte gerada
+        
         return this.largaArma(sorteGerada);
     }
 

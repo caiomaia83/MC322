@@ -9,7 +9,6 @@ import com.rpg.personagens.Monstros.*;
 import com.rpg.game.*;
 
 
-
 public class ConstrutorDeCenario implements GeradorDeFases {
 
     public ConstrutorDeCenario() {}
