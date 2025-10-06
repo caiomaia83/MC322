@@ -1,0 +1,15 @@
+package com.rpg.game.itens.Armas.ArmasBase;
+
+import com.rpg.game.itens.Armas.*;
+import com.rpg.game.itens.Classificadores.*;
+
+public class Lanca extends Arma {
+    
+    Boolean golpePerfurante; // Atributo único das lanças, permite um ataque crítico que ignora defesa 
+
+    public Lanca( String nome, Raridade raridade, OrigemDoItem origem, int minNivel, int dano, float velocidadeDeAtaque) { 
+        super(nome, raridade, origem, minNivel, dano, velocidadeDeAtaque );
+        this.setAlcance(0.15f); // Lança tem um alcance um pouco maior 
+        this.golpePerfurante = false;
+    }
+}
