@@ -39,4 +39,12 @@ public interface Combatente {
      * @return O objeto {@link AcaoCombate} que representa a ação a ser executada.
      */
     AcaoCombate escolherAcao(Combatente alvo);
+
+    int getDanoAtaque();
+
+    int getChanceAtaqueExtra();
+
+    float getSorte();
+
+    float getPrecisaoAtaque();
 }

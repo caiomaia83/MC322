@@ -30,6 +30,12 @@ public class Arqueira extends Heroi {
         this.alcance += valor;
     }
 
+    @Override
+    public float getPrecisaoAtaque() {
+        return this.precisao;
+    }
+    
+
     // REMOVIDO: O método atacar() foi movido para a classe FlechaPerfurante
 
     // REMOVIDO: O método usarHabilidadeEspecial() foi movido para a classe OlhosDeAguia

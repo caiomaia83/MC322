@@ -26,6 +26,12 @@ public class Corredor extends Monstro {
     }
 
     @Override
+    public int getChanceAtaqueExtra() {
+        // A 'velocidade' do Corredor representa diretamente sua chance de ataque extra.
+        return this.velocidade;
+}
+
+    @Override
     public Monstro criarCopiaFortalecida(double fatorDificuldade) {
         int novaVida = (int) (this.getPontosDeVidaTotal() * fatorDificuldade);
         int novaForca = (int) (this.getForca() * fatorDificuldade);
