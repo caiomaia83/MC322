@@ -1,11 +1,11 @@
-package com.rpg.game.personagens.Monstros;
+package com.rpg.game.personagens.Monstros; // Seu pacote
 
-import java.util.ArrayList; // ADICIONADO
+import com.rpg.itens.Arma; // Supondo que DemolidorDeTorres herde de Arma
+import com.rpg.itens.classificadores.OrigemDoItem;
+import com.rpg.personagens.Monstro;
+// Corrigindo o import da arma específica se necessário
+import com.rpg.itens.armas.monstros.Corredor.DemolidorDeTorres;
 
-import com.rpg.game.combate.*;
-import com.rpg.game.itens.Armas.ArmasMonstros.Corredor.*;
-import com.rpg.game.itens.Classificadores.*;
-import com.rpg.game.personagens.Monstro;
 
 public class Corredor extends Monstro {
 
@@ -15,29 +15,32 @@ public class Corredor extends Monstro {
         super("Hog Rider", OrigemDoItem.CORREDOR, pontosDeVida, forca, xpConcedido, new DemolidorDeTorres());
         this.velocidade = velocidade;
 
-      
-        this.acoes = new ArrayList<>();
-        this.acoes.add(new AtaqueDoCorredor()); 
     }
 
- 
+    // O getter da velocidade continua correto
     public int getVelocidade() {
         return this.velocidade;
     }
 
+    // A implementação da chance de ataque extra continua correta
     @Override
     public int getChanceAtaqueExtra() {
-        // A 'velocidade' do Corredor representa diretamente sua chance de ataque extra.
         return this.velocidade;
-}
+    }
 
     @Override
     public Monstro criarCopiaFortalecida(double fatorDificuldade) {
+        // Calcula os novos atributos (sua lógica original está correta)
         int novaVida = (int) (this.getPontosDeVidaTotal() * fatorDificuldade);
         int novaForca = (int) (this.getForca() * fatorDificuldade);
         int novoXp = (int) (this.getXpConcedido() * fatorDificuldade);
-        return new Corredor(novaVida, novaForca, novoXp, this.velocidade);
+
+        // Cria a nova instância fortalecida
+        Corredor copia = new Corredor(novaVida, novaForca, novoXp, this.velocidade);
+   
+        copia.setAcoes(this.acoes);
+        // ----------------------
+        
+        return copia; // Retorna a cópia fortalecida e com as ações corretas
     }
-
-
 }

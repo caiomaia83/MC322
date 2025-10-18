@@ -105,6 +105,11 @@ public abstract class Monstro extends Personagem implements Lootavel {
         return this.origem;
     }
 
+    public void setAcoes(List<AcaoCombate> acoes) {
+    // Simplesmente atribui a lista recebida ao atributo 'acoes' do monstro
+        this.acoes = acoes;
+}
+
     /**
      * Sorteia uma arma da tabela de loot do monstro com base na sorte do jogador.
      * <p>
