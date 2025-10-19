@@ -2,6 +2,9 @@ package com.rpg.game.itens.Registro;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map; 
+import java.util.HashMap; 
+import java.util.Collections;
 
 import com.rpg.game.itens.*;
 import com.rpg.game.itens.Acessorios.RecrutasReais.*;
@@ -104,5 +107,34 @@ public class RegistroDeItens {
         // Épico
         TODOS_OS_ITENS.add(new DemolidorDeTorres());
         
+    }
+
+    // métodos para navegar o registro
+
+    private static final Map<Class <? extends Item>, Item> PROTOTYPE_MAP = buildMap();
+
+
+    private static Map<Class<? extends Item>, Item> buildMap() {
+        Map<Class<? extends Item>, Item> map = new HashMap<>();
+        
+        // Itera sobre a lista de protótipos 
+        for (Item prototipo : TODOS_OS_ITENS) {
+            // Mapeia a Classe para sua instância (
+            map.put(prototipo.getClass(), prototipo);
+        }
+        // Retorna um mapa imutável 
+        return Collections.unmodifiableMap(map);
+    }
+
+    /**
+     * Método público que o GerenciadorDeLoot usará para consultar
+     * a instância do protótipo de um item, usando sua Classe como chave.
+     * * @param classeDoItem A classe do item 
+     * @return A instância do protótipo (ex: o objeto 'new DemolidorDeTorres()' 
+     * original da lista TODOS_OS_ITENS)
+     */
+    public static Item getPrototipo(Class<? extends Item> classeDoItem) {
+        // Retorna a instância do protótipo sem criar uma nova
+        return PROTOTYPE_MAP.get(classeDoItem);
     }
 }
