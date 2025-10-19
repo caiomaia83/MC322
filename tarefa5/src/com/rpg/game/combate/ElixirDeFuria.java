@@ -2,8 +2,9 @@ package com.rpg.game.combate;
 import com.rpg.game.personagens.*; 
 
 
-import com.rpg.exceptions.*;
-import com.rpg.personagens.herois.*;
+import com.rpg.game.exceptions.*;
+import com.rpg.game.personagens.Herois.*;
+
 
 /**
  * Representa a habilidade especial dos bárbaros "Elixir de Fúria".
@@ -32,7 +33,7 @@ public class ElixirDeFuria implements AcaoCombate {
      * @throws RecursoInsuficienteException Se o Bárbaro não tiver cargas do elixir.
      */
     @Override
-    public void executar(Combatente usuario, Combatente alvo) throws RecursoInsuficienteException {
+    public void executar(Combatente usuario, Combatente alvo) throws RecursoInsuficiente {
         
         // --- Verificação de Recurso (Ainda precisa do casting para Barbaro aqui) ---
         // A lógica de RECURSO é específica do Bárbaro, então o casting aqui é justificável
@@ -40,7 +41,7 @@ public class ElixirDeFuria implements AcaoCombate {
         if (usuario instanceof Barbaro) {
              Barbaro barbaro = (Barbaro) usuario;
              if (barbaro.getCargasElixir() <= 0) {
-                 throw new RecursoInsuficienteException(barbaro.getNome() + " tentou usar o elixir, mas não há mais cargas!");
+                 throw new RecursoInsuficiente(barbaro.getNome() + " tentou usar o elixir, mas não há mais cargas!");
              }
              barbaro.usarCargaElixir(); // Consome a carga
              System.out.println(barbaro.getNome() + " usou uma carga de Elixir! Restam: " + barbaro.getCargasElixir());

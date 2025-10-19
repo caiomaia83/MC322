@@ -5,18 +5,9 @@ import java.util.List;
 import java.util.Random;
 
 import com.rpg.game.*;
-import com.rpg.game.combate.Arranhao;
-import com.rpg.game.combate.AtaqueDesvairado;
-import com.rpg.game.combate.AtaqueDoCorredor;
-import com.rpg.game.combate.AtaqueFisico;
-import com.rpg.game.combate.ElixirDeFuria;
-import com.rpg.game.combate.EstocadaSimples;
-import com.rpg.game.combate.FlechaPerfurante;
-import com.rpg.game.combate.InvestidaReal;
-import com.rpg.game.combate.OlhosDeAguia;
+import com.rpg.game.combate.*;
 import com.rpg.game.personagens.Monstro;
 import com.rpg.game.personagens.Monstros.*;
-
 /**
  * Implementação concreta de {@link GeradorDeFases} que constrói o mundo do jogo.
  * <p>

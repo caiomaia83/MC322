@@ -1,6 +1,6 @@
 package com.rpg.game.combate; // O pacote correto
 
-import com.rpg.personagens.Combatente; // Import da interface
+import com.rpg.game.personagens.Combatente; // Import da interface
 // O import de 'Personagem' não é mais necessário aqui!
 
 /**

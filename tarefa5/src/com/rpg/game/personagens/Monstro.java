@@ -44,7 +44,7 @@ public abstract class Monstro extends Personagem implements Lootavel {
      * @return Um {@link IItem} dropado pelo monstro, ou {@code null} se nada for dropado.
      */
     @Override
-    public abstract IItem droparLoot(); // MÉTODO AGORA ABSTRATO
+    public abstract InterfaceItem droparLoot(); 
 
     /**
      * Cria uma cópia mais forte deste monstro, com atributos escalonados.

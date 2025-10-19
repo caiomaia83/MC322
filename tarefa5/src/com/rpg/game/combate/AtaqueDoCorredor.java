@@ -1,7 +1,7 @@
 package com.rpg.game.combate; // Pacote correto
 
 import java.util.Random;
-import com.rpg.personagens.Combatente; // Apenas a interface é necessária
+import com.rpg.game.personagens.*; // Apenas a interface é necessária
 // O import de 'Corredor' não é mais necessário aqui!
 
 /**

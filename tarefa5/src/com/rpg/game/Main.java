@@ -9,6 +9,7 @@ import com.rpg.game.itens.Loot.*;
 import com.rpg.game.personagens.*;
 import com.rpg.game.personagens.Herois.*;
 import com.rpg.game.util.*;
+import com.rpg.game.exceptions.*;
 
 public class Main {
 
@@ -105,20 +106,39 @@ public class Main {
 
                     heroi.exibirStatus();
                     monstroAtual.exibirStatus();
-                    // --- TURNO DO HERÓI ---
                     System.out.println("\n--- Turno do " + heroi.getNome() + " ---");
                     AcaoCombate acaoHeroi = heroi.escolherAcao(monstroAtual);
-                    if (acaoHeroi != null) acaoHeroi.executar(heroi, monstroAtual);
-                    else System.out.println(heroi.getNome() + " não fez nada.");
+                    if (acaoHeroi != null) {
+                        try { // Tenta executar a ação do herói
+                            acaoHeroi.executar(heroi, monstroAtual);
+                        } catch (RecursoInsuficiente e) { // Captura o erro específico
+                            System.out.println("!!! " + e.getMessage() + " !!!");
+                            System.out.println(heroi.getNome() + " perdeu o turno.");
+                        } catch (Exception e) { // Captura genérica para outros erros
+                            System.out.println("Erro inesperado na ação do herói: " + e.getMessage());
+                        }
+                    } else {
+                        System.out.println(heroi.getNome() + " não fez nada.");
+                    }
 
                     // --- TURNO DO MONSTRO ---
                     if (monstroAtual.estaVivo()) {
+                        // Você tinha exibições de status aqui, mantidas:
                         heroi.exibirStatus();
                         monstroAtual.exibirStatus();
                         System.out.println("\n--- Turno do " + monstroAtual.getNome() + " ---");
                         AcaoCombate acaoMonstro = monstroAtual.escolherAcao(heroi);
-                        if (acaoMonstro != null) acaoMonstro.executar(monstroAtual, heroi);
-                        else System.out.println(monstroAtual.getNome() + " não fez nada.");
+                        if (acaoMonstro != null) {
+                            try { // Tenta executar a ação do monstro
+                                acaoMonstro.executar(monstroAtual, heroi);
+                            } catch (RecursoInsuficiente e) { // Captura o erro (improvável para monstros agora)
+                                System.out.println("!!! " + e.getMessage() + " !!!");
+                            } catch (Exception e) { // Captura genérica
+                                System.out.println("Erro inesperado na ação do monstro: " + e.getMessage());
+                            }
+                        } else {
+                            System.out.println(monstroAtual.getNome() + " não fez nada.");
+                        }
                     }
                 } // FIM DO COMBATE
 

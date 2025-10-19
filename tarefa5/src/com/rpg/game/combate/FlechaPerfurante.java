@@ -1,8 +1,8 @@
 package com.rpg.game.combate; 
 
 // SEUS IMPORTS ORIGINAIS (mantidos)
-import com.rpg.personagens.*;
-import com.rpg.personagens.Herois.*; // Mantido, embora Arqueira não seja mais usada diretamente
+import com.rpg.game.personagens.*;
+import com.rpg.game.personagens.Herois.*; // Mantido, embora Arqueira não seja mais usada diretamente
 
 /**
  * Representa a ação de combate "Flecha Perfurante".

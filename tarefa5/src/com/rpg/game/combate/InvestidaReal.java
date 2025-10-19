@@ -1,6 +1,6 @@
 package com.rpg.game.combate; // SEU PACOTE (mantido)
 
-import com.rpg.personagens.*; // SEU IMPORT (mantido)
+import com.rpg.game.personagens.*; // SEU IMPORT (mantido)
 
 /**
  * Representa a habilidade especial "Investida Real".

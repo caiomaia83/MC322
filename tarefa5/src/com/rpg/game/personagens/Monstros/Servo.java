@@ -1,21 +1,14 @@
-package com.rpg.game.personagens.Monstros; // Seu pacote
+package com.rpg.game.personagens.Monstros; // Seu pacote original (mantido)
 
+import java.util.ArrayList; // Adicionado para filtrarArmas (se necessário)
 import java.util.List;
-// O import do ArrayList e Arranhao não são mais necessários aqui no topo para o construtor
-// import java.util.ArrayList;
-// import com.rpg.combate.Arranhao;
 
-// Seus imports originais (mantidos)
-import com.rpg.itens.Armas.*;
-import com.rpg.itens.classificadores.*;
-import com.rpg.itens.loot.*;
-import com.rpg.personagens.Monstro;
-
-import com.rpg.itens.loot.ConstrutorDeTabelaDeLoot;
-import com.rpg.itens.loot.GerenciadorDeLoot;
-import com.rpg.itens.Item;
-import com.rpg.itens.IItem;
-import java.util.ArrayList;
+// --- Imports Corrigidos para usar com.rpg.game ---
+import com.rpg.game.itens.Armas.*;
+import com.rpg.game.itens.Classificadores.*; 
+import com.rpg.game.itens.Loot.*; 
+import com.rpg.game.personagens.Monstro;
+import com.rpg.game.itens.*; 
 
 public class Servo extends Monstro {
 
@@ -55,14 +48,14 @@ public class Servo extends Monstro {
     }
 
     @Override
-    public IItem droparLoot() {
+    public InterfaceItem droparLoot() {
         System.out.println("Verificando os despojos de " + getNome() + "...");
         if (LISTA_POSSIVEIS_DROPS.isEmpty()) {
             System.out.println(getNome() + " não tinha nada de valor.");
             return null;
         }
         // Usa a lista estática para o sorteio
-        IItem itemSorteado = GerenciadorDeLoot.sortearItem(LISTA_POSSIVEIS_DROPS);
+        InterfaceItem itemSorteado = GerenciadorDeLoot.sortearItem(LISTA_POSSIVEIS_DROPS);
 
         if (itemSorteado != null) {
             System.out.printf("%s deixou cair %s!\n", this.getNome(), itemSorteado.getNome());

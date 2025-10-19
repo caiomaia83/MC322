@@ -1,6 +1,7 @@
 package com.rpg.game.combate; 
 
-import com.rpg.personagens.Combatente; // Import da interface
+import com.rpg.game.personagens.Combatente; // Import da interface
+import com.rpg.game.exceptions.*;
 // O import de 'Personagem' não é mais necessário aqui!
 
 /**

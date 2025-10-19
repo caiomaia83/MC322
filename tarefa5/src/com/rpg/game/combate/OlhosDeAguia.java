@@ -1,7 +1,7 @@
 package com.rpg.game.combate;
 
-import com.rpg.personagens.*;
-import com.rpg.personagens.Herois.*;
+import com.rpg.game.personagens.*;
+import com.rpg.game.personagens.Herois.*;
 
 /**
  * Representa a habilidade especial "Olhos de Águia", exclusiva da Arqueira.

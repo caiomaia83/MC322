@@ -2,6 +2,7 @@ package com.rpg.game.combate;
 
 
 import com.rpg.game.personagens.*;
+import com.rpg.game.exceptions.*;
 /**
  * Define o contrato para qualquer ação que possa ser executada durante o combate.
  * <p>
@@ -25,6 +26,6 @@ public interface AcaoCombate {
      * @param usuario O {@link Combatente} que está realizando a ação.
      * @param alvo O {@link Combatente} que está recebendo o efeito da ação.
      */
-    void executar(Combatente usuario, Combatente alvo);
+    void executar(Combatente usuario, Combatente alvo) throws RecursoInsuficiente;
     
 }

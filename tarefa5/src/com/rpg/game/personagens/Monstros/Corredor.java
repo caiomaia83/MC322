@@ -1,16 +1,14 @@
-package com.rpg.game.personagens.Monstros; // Seu pacote
+package com.rpg.game.personagens.Monstros;
 
-import com.rpg.itens.Arma; // Supondo que DemolidorDeTorres herde de Arma
-import com.rpg.itens.classificadores.OrigemDoItem;
-import com.rpg.personagens.Monstro;
-// Corrigindo o import da arma específica se necessário
-import com.rpg.itens.armas.monstros.Corredor.DemolidorDeTorres;
-
-import com.rpg.itens.loot.ConstrutorDeTabelaDeLoot;
-import com.rpg.itens.loot.GerenciadorDeLoot;
-import com.rpg.itens.Item;
-import com.rpg.itens.IItem;
 import java.util.ArrayList;
+import java.util.List;
+
+import com.rpg.game.itens.Armas.*;
+import com.rpg.game.itens.Classificadores.*;
+import com.rpg.game.personagens.Monstro;
+import com.rpg.game.itens.Loot.*;
+import com.rpg.game.itens.*;
+import com.rpg.game.itens.Armas.ArmasMonstros.Corredor.*;;
 
 
 public class Corredor extends Monstro {
@@ -53,14 +51,14 @@ public class Corredor extends Monstro {
     }
 
     @Override
-    public IItem droparLoot() {
+    public InterfaceItem droparLoot() {
         System.out.println("Verificando os despojos de " + getNome() + "...");
         if (LISTA_POSSIVEIS_DROPS.isEmpty()) {
             System.out.println(getNome() + " não tinha nada de valor.");
             return null;
         }
         // Usa a lista estática para o sorteio
-        IItem itemSorteado = GerenciadorDeLoot.sortearItem(LISTA_POSSIVEIS_DROPS);
+        InterfaceItem itemSorteado = GerenciadorDeLoot.sortearItem(LISTA_POSSIVEIS_DROPS);
 
         if (itemSorteado != null) {
             System.out.printf("%s deixou cair %s!\n", this.getNome(), itemSorteado.getNome());
