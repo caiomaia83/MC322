@@ -89,6 +89,7 @@ public abstract class Heroi extends Personagem {
     }
 
     // O getter da sorte é único na medida que ele muda toda vez que é chamado
+    @Override
     public float getSorte() {
         Random random = new Random();
         this.sorte = random.nextFloat(1.0f);

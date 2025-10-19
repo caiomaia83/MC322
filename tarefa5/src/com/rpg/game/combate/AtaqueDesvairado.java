@@ -1,35 +1,35 @@
-package com.rpg.game.combate;
+package com.rpg.game.combate; 
 
+import com.rpg.game.personagens.Combatente; // Import da interface
+import com.rpg.game.exceptions.*;
+// O import de 'Personagem' não é mais necessário aqui!
 
-import com.rpg.game.personagens.*;
 /**
  * Representa a ação de combate "Ataque Desvairado".
  * <p>
- * Esta classe implemente um ataque físico direto. Sua única
- * função é aplicar o dano total do usuário em um único alvo.
- * É um ataque característico dos bárbaros.
+ * Esta classe implementa um ataque físico direto, utilizando o método
+ * {@code getDanoAtaque()} da interface {@link Combatente}.
+ * É um ataque característico dos bárbaros, mas pode ser usado por outros.
  * </p>
- * 
+ *
  * @author Fernando e Caio
- * @version 1.0
- * @since 05-10-05
+ * @version 1.1 // Atualizei a versão
+ * @since 2025-10-05 // Corrigi a data
  */
 public class AtaqueDesvairado implements AcaoCombate {
     /**
      * {@inheritDoc}
      * <p>
-     * Executa um ataque físico direto que causa dano ao alvo com base nos
-     * atributos do usuário.
+     * Executa um ataque físico direto que causa dano ao alvo com base no
+     * retorno do método {@code getDanoAtaque()} do usuário.
      * </p>
      */
     @Override
     public void executar(Combatente usuario, Combatente alvo) {
         System.out.println(usuario.getNome() + " ataca com: Ataque Desvairado!");
         
-        int dano = 0;
-        if (usuario instanceof Personagem) {
-            dano = ((Personagem) usuario).getDano();
-        }
+        // MUDANÇA PRINCIPAL: Usamos o método da interface, sem casting!
+        int dano = usuario.getDanoAtaque();
 
         alvo.receberDano(dano);
     }

@@ -97,6 +97,7 @@ public abstract class Personagem implements Combatente{
     protected void setPontosDeVidaTotal(int hpTotal) {
         this.pontosDeVidaTotal = hpTotal;
     }
+    
     /**
      * Calcula e retorna o dano total do ataque do personagem.
      * 
@@ -105,17 +106,42 @@ public abstract class Personagem implements Combatente{
      *
      * @return O dano total do ataque
      */
-    public int getDano() { // Retorna o dano do ataque do personagem
+    
+    @Override
+    public int getDanoAtaque() {
         if(this.arma == null) {
             return this.forca;
         }
 
         return (this.forca + this.arma.getDano());
     }
+    
+    public int getDano() { // Retorna o dano do ataque do personagem
+        if (this.arma == null) {
+            return this.forca;
+        }
 
+        return (this.forca + this.arma.getDano());
+    }
+    
+    @Override
+    public int getChanceAtaqueExtra() {
+        return 0; // Por padrão, a chance é 0%
+    }
+
+    @Override
+    public float getSorte() {
+        return 0.0f; // Por padrão, sorte é 0.0
+    }
+    
     public int getForca() {
         return this.forca;
     }
+
+    @Override    
+    public float getPrecisaoAtaque() {
+        return 0.0f; // Por padrão, precisão é 0.0
+    }   
 
     protected void setForca(int forca) {
         this.forca = forca;

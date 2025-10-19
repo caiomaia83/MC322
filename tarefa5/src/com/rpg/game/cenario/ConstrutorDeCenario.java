@@ -5,9 +5,9 @@ import java.util.List;
 import java.util.Random;
 
 import com.rpg.game.*;
+import com.rpg.game.combate.*;
 import com.rpg.game.personagens.Monstro;
 import com.rpg.game.personagens.Monstros.*;
-
 /**
  * Implementação concreta de {@link GeradorDeFases} que constrói o mundo do jogo.
  * <p>
@@ -21,6 +21,11 @@ import com.rpg.game.personagens.Monstros.*;
  * @since 2025-10-05
  */
 public class ConstrutorDeCenario implements GeradorDeFases {
+
+    private static AtaqueFisico ataqueFisico = new AtaqueFisico();
+    private static Arranhao arranhao = new Arranhao();
+    private static AtaqueDoCorredor ataqueDoCorredor = new AtaqueDoCorredor();
+
 
     public ConstrutorDeCenario() {}
     /**
@@ -40,6 +45,10 @@ public class ConstrutorDeCenario implements GeradorDeFases {
         List<TipoCenario> poolDeAmbientes = getAmbientes();
         List<Monstro> bestiario = criarBestiario();
         Random random = new Random();
+
+        for (Monstro monstroBase : bestiario) {
+            definirAcoesDoMonstro(monstroBase); 
+    }
 
         for (int i = 1; i <= quantidadeDeFases; i++) {
             int nivelAtual = i;
@@ -78,4 +87,22 @@ public class ConstrutorDeCenario implements GeradorDeFases {
         monstros.add(new Esqueleto(30, 8, 15));
         return monstros;
     }
+
+    private void definirAcoesDoMonstro(Monstro monstro) {
+    List<AcaoCombate> acoesDoMonstro = new ArrayList<>();
+
+    // Verificamos o tipo do monstro e adicionamos as ações compartilhadas
+    if (monstro instanceof Esqueleto) {
+        acoesDoMonstro.add(ataqueFisico); // Usando sua variável estática
+
+    } else if (monstro instanceof Servo) {
+        acoesDoMonstro.add(arranhao); // Usando sua variável estática
+        
+    } else if (monstro instanceof Corredor) {
+        acoesDoMonstro.add(ataqueDoCorredor); // Usando sua variável estática
+    }
+
+    monstro.setAcoes(acoesDoMonstro);
+}
+
 }

@@ -1,52 +1,45 @@
-package com.rpg.game.combate;
+package com.rpg.game.combate; // SEU PACOTE (mantido)
 
-
-import com.rpg.game.personagens.*;
+import com.rpg.game.personagens.*; // SEU IMPORT (mantido)
 
 /**
- * Representa a habilidade especial "Investida Real", habilidade especial do Recruta Real.
+ * Representa a habilidade especial "Investida Real".
  * <p>
- * É uma manobra de alto risco e alta recompensa. Possui uma alta chance (80%)
- * de causar um dano crítico massivo, mas também uma pequena chance (20%) de falhar
- * completamente, não causando dano algum.
+ * É uma manobra de alto risco e alta recompensa. A chance de sucesso e o
+ * multiplicador de dano são baseados no método {@code getSorte()} do {@link Combatente}.
  * </p>
  *
  * @author Fernando e Caio
- * @version 1.0
+ * @version 1.1 // Versão atualizada
  * @since 2025-10-05
  */
 public class InvestidaReal implements AcaoCombate {
-        /**
+    /**
      * {@inheritDoc}
      * <p>
-     * Executa a Investida Real. O resultado é baseado na sorte do {@link Heroi}:
-     * 
-     * -Sucesso (Sorte >= 0.20): O ataque acerta e causa dano crítico. O multiplicador de dano é dinâmico, sendo {@code (1.5 + sorte)}, resultando em um dano entre 165% e 250%.
-     * -Falha (Sorte < 0.20): O herói escorrega, e o ataque falha, causando 0 de dano.
+     * Executa a Investida Real. O resultado é baseado no valor retornado por
+     * {@code usuario.getSorte()}:
+     * <ul>
+     * <li>Sucesso (Sorte >= 0.20): O ataque acerta. O dano é {@code usuario.getDanoAtaque()}
+     * multiplicado por {@code (1.5 + usuario.getSorte())}.</li>
+     * <li>Falha (Sorte < 0.20): O ataque falha, causando 0 de dano.</li>
+     * </ul>
      * </p>
      */
     @Override
     public void executar(Combatente usuario, Combatente alvo) {
-        System.out.println("--> HABILIDADE ESPECIAL! <--");
-        
-        // A lógica de sorte que estava em 'usarHabilidadeEspecial' vem para cá
-        // Precisamos garantir que o 'usuario' é um Herói para usar o getSorte()
-        if (usuario instanceof Heroi) {
-            Heroi heroiUsuario = (Heroi) usuario;
+        System.out.println("--> HABILIDADE ESPECIAL: " + usuario.getNome() + " usa INVESTIDA REAL! <--");
 
-            if (heroiUsuario.getSorte() >= 0.2) {
-                // A lógica de dano bônus que estava no 'atacar' vem para cá
-                int dano = (int) (heroiUsuario.getDano() * (1.5 + heroiUsuario.getSorte()));
-                System.out.println(heroiUsuario.getNome() + " atacou com Investida Real e causou dano crítico!");
-                alvo.receberDano(dano);
+        float sorteAtual = usuario.getSorte(); // MUDANÇA 1: Usa método da interface
 
-            } else {
-                // A lógica do azar que estava em 'usarHabilidadeEspecial' vem para cá
-                System.out.println(heroiUsuario.getNome() + " escorregou e não conseguiu atacar!");
-            }
+        if (sorteAtual >= 0.2f) { // Limite de 0.20f
+            int danoBase = usuario.getDanoAtaque(); // MUDANÇA 2: Usa método da interface
+            int danoFinal = (int) (danoBase * (1.5 + sorteAtual));
+            System.out.println(usuario.getNome() + " acertou em cheio e causou dano crítico!");
+            alvo.receberDano(danoFinal);
         } else {
-            // Caso de segurança se um não-herói tentar usar isso
-            System.out.println("Apenas heróis podem usar esta habilidade!");
+            System.out.println(usuario.getNome() + " escorregou e não conseguiu atacar!");
+            // Nenhum dano é aplicado
         }
     }
 }
