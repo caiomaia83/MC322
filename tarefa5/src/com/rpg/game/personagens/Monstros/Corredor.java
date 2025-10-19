@@ -1,6 +1,5 @@
 package com.rpg.game.personagens.Monstros;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.rpg.game.itens.Armas.*;
@@ -83,7 +82,7 @@ public class Corredor extends Monstro {
             return null;
          }
          // Usa a lista filtrada para sortear com sorte
-         Class<? extends Arma> classeDaArma = (Class<? extends Arma>) GerenciadorDeLoot.sortearItemComSorte(LISTA_POSSIVEIS_ARMAS, sorteDoJogador);
+         Class<? extends Arma> classeDaArma = GerenciadorDeLoot.sortearArmaComSorte(LISTA_POSSIVEIS_ARMAS, sorteDoJogador);
 
          if (classeDaArma != null) {
             try{ // Instancia uma nova versão da arma 

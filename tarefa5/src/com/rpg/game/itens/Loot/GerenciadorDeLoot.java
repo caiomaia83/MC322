@@ -71,6 +71,51 @@ public class GerenciadorDeLoot {
         
         // Se a sorte falhar ou não houver itens melhores, faz o sorteio normal
         Class<? extends Item> classeSorteada = sortearItem(tabelaDeItens);
+        return classeSorteada;
+    }
+
+    // MÉTODOS PARA ARMAS
+
+    public static Class <? extends Arma> sortearArma(List <Class<? extends Arma>> tabela) {
+        // Converte a lista de Armas para uma lista de Itens p/ usar os helpers
+        List<Class<? extends Item>> tabelaDeItens = new ArrayList<>(tabela);
+
+        // Sorteia uma arma aleatória
+        Class<? extends Item> classeSorteada = sortearItem(tabelaDeItens);
+        
+        // Converte de volta para Arma 
+        return classeSorteada.asSubclass(Arma.class);
+    }
+
+    /**
+     * Sorteia uma ARMA específica aplicando a lógica de "sorte".
+     * Retorna Class<? extends Arma>.
+     */
+    public static Class<? extends Arma> sortearArmaComSorte(List<Class <? extends Arma>> tabelaDeArmas, float sorteDoJogador) {
+        Random random = new Random();
+        
+        // Converte a lista de Armas para uma lista de Itens p/ usar os helpers
+        List<Class<? extends Item>> tabelaDeItens = new ArrayList<>(tabelaDeArmas);
+
+        if (random.nextFloat() <= sorteDoJogador) {
+            System.out.println("Sorte extra! Tentando uma arma de maior raridade...");
+            
+            //  Filtra 
+            List<Class<? extends Item>> itensMelhores = filtrarPorRaridadeMinima(tabelaDeItens, Raridade.RARO);
+            
+            if (!itensMelhores.isEmpty()) {
+                // 2. Sorteia 
+                Class<? extends Item> classeSorteada = sortearItem(itensMelhores);
+                
+                // 3. Converte de volta para Arma (agora é seguro)
+                return classeSorteada.asSubclass(Arma.class); 
+            }
+        }
+        
+        // Se a sorte falhar, sorteio normal
+        Class<? extends Item> classeSorteada = sortearItem(tabelaDeItens);
+        
+        // Converte de volta para Arma 
         return classeSorteada.asSubclass(Arma.class);
     }
 

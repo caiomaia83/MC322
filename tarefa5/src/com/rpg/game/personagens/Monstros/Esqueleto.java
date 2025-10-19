@@ -1,6 +1,5 @@
 package com.rpg.game.personagens.Monstros;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.rpg.game.itens.Armas.*;
@@ -11,28 +10,15 @@ import com.rpg.game.itens.*;
 
 public class Esqueleto extends Monstro {
 
-    private static final List<Item> LISTA_POSSIVEIS_DROPS =
+    private static final List<Class <? extends Item>> LISTA_POSSIVEIS_DROPS =
             ConstrutorDeTabelaDeLoot.constroiPara(OrigemDoItem.ESQUELETO);
+
+    private static final List<Class <? extends Arma>> LISTA_POSSIVEIS_ARMAS = 
+            ConstrutorDeTabelaDeLoot.constroiListaDeArmas(OrigemDoItem.ESQUELETO);
 
     public Esqueleto(int pontosDeVida, int forca, int xpconcedido) {
         // Sorteia a arma inicial a partir da nova lista estática
         super("Esqueleto", OrigemDoItem.ESQUELETO, pontosDeVida, forca, xpconcedido, sortearArmaInicial());
-    }
-
-    // Método auxiliar para sortear a arma inicial da lista estática
-    private static Arma sortearArmaInicial() {
-        List<Arma> armasPossiveis = filtrarArmas(LISTA_POSSIVEIS_DROPS);
-        if (armasPossiveis.isEmpty()) return null;
-        return (Arma) GerenciadorDeLoot.sortearItem(armasPossiveis);
-    }
-
-    // Método auxiliar para filtrar apenas armas da lista de drops
-    private static List<Arma> filtrarArmas(List<Item> listaCompleta) {
-        List<Arma> armas = new ArrayList<>();
-        for(Item i : listaCompleta) {
-            if (i instanceof Arma) armas.add((Arma)i);
-        }
-        return armas;
     }
 
 
@@ -54,22 +40,29 @@ public class Esqueleto extends Monstro {
             return null;
         }
         // Usa a lista estática para o sorteio
-        InterfaceItem itemSorteado = GerenciadorDeLoot.sortearItem(LISTA_POSSIVEIS_DROPS);
+        Class <? extends Item> classeSorteada = GerenciadorDeLoot.sortearItem(LISTA_POSSIVEIS_DROPS);
 
-        if (itemSorteado != null) {
-            System.out.printf("%s deixou cair %s!\n", this.getNome(), itemSorteado.getNome());
+        if (classeSorteada != null) {
+            try{ // Declara uma nova instância da classe 
+                InterfaceItem itemInstanciado = classeSorteada.getDeclaredConstructor().newInstance();
+                System.out.printf("%s deixou cair %s!\n", this.getNome(), itemInstanciado.getNome());
+                return itemInstanciado;
+            } catch (Exception e) {
+                System.err.println("Erro crítico: Falha ao instanciar loot " + classeSorteada.getName());
+                e.printStackTrace();
+                return null;
+            }
         } else {
             System.out.println("Nenhum item foi encontrado.");
+            return null;
         }
-        return itemSorteado;
     }
 
     @Override
     public Arma largaArma(float sorteDoJogador) {
          System.out.println(this.getNome() + " foi derrotado!");
-         List<Arma> armasPossiveis = filtrarArmas(LISTA_POSSIVEIS_DROPS); // Filtra da lista estática
 
-         if (armasPossiveis.isEmpty()) {
+        if (LISTA_POSSIVEIS_ARMAS.isEmpty()) {
              System.out.printf("%s não tinha armas para deixar cair.\n", this.getNome());
              return null;
          }
@@ -78,13 +71,34 @@ public class Esqueleto extends Monstro {
             return null;
          }
          // Usa a lista filtrada para sortear com sorte
-         Arma armaSorteada = (Arma) GerenciadorDeLoot.sortearItemComSorte(armasPossiveis, sorteDoJogador);
+         Class<? extends Arma> classeDaArma = GerenciadorDeLoot.sortearArmaComSorte(LISTA_POSSIVEIS_ARMAS, sorteDoJogador);
 
-         if (armaSorteada != null) {
-            System.out.printf("%s deixou cair %s!\n", this.getNome(), armaSorteada.getNome());
+         if (classeDaArma != null) {
+            try{ // Instancia uma nova versão da arma 
+                Arma armaInstanciada = classeDaArma.getDeclaredConstructor().newInstance();
+                System.out.printf("%s deixou cair %s!\n", this.getNome(), armaInstanciada.getNome());
+                return armaInstanciada;
+            } catch (Exception e) {
+                System.err.println("Erro crítico: Falha ao instanciar arma " + classeDaArma.getName());
+                e.printStackTrace();
+                return null;
+            }
          } else {
             System.out.printf("%s não deixou cair nada.\n", this.getNome());
-         }
-         return armaSorteada;
+        }
+        return null;
+
+    }
+
+    private static Arma sortearArmaInicial() {
+        Class <? extends Arma> classeDaArma = GerenciadorDeLoot.sortearArma(LISTA_POSSIVEIS_ARMAS);
+        try{ // Instancia uma nova versão da arma 
+                Arma armaInstanciada = classeDaArma.getDeclaredConstructor().newInstance();
+                return armaInstanciada;
+            } catch (Exception e) {
+                System.err.println("Erro crítico: Falha ao instanciar arma " + classeDaArma.getName());
+                e.printStackTrace();
+                return null;
+            }
     }
 }
