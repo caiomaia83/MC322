@@ -1,0 +1,31 @@
+
+// Plugins
+plugins {
+    id 'application'
+}
+repositories {
+    mavenCentral()
+}
+
+// Lista as bibliotecas que seu projeto necessita.
+dependencies {
+    implementation 'javax.xml.bind:jaxb-api:2.3.1'
+    implementation 'org.glassfish.jaxb:jaxb-runtime:2.3.1'
+
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.10.0'
+}
+
+
+application {
+    mainClass = 'com.rpg.game.Main'
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+tasks.named('run', JavaExec) {
+    standardInput = System.in
+}
