@@ -1,0 +1,103 @@
+package com.rpg.game.personagens.Monstros;
+
+import java.util.List;
+
+import com.rpg.game.itens.Armas.*;
+import com.rpg.game.itens.Classificadores.*;
+import com.rpg.game.personagens.Monstro;
+import com.rpg.game.itens.Loot.*;
+import com.rpg.game.itens.*;
+import com.rpg.game.itens.Armas.ArmasMonstros.Corredor.*;;
+
+
+public class Corredor extends Monstro {
+    // a tabela de loot retorna o classe do item 
+    private static final List<Class< ? extends Item>> LISTA_POSSIVEIS_DROPS =
+            ConstrutorDeTabelaDeLoot.constroiPara(OrigemDoItem.CORREDOR);
+
+    // Retorna uma tabela com a classe de cada arma desse monstro
+    private static final List<Class <? extends Arma>> LISTA_POSSIVEIS_ARMAS = 
+            ConstrutorDeTabelaDeLoot.constroiListaDeArmas(OrigemDoItem.CORREDOR);
+    private int velocidade;
+
+    public Corredor(int pontosDeVida, int forca, int xpConcedido, int velocidade) {
+        super("Hog Rider", OrigemDoItem.CORREDOR, pontosDeVida, forca, xpConcedido, new DemolidorDeTorres());
+        this.velocidade = velocidade;
+    }
+    public int getVelocidade() {
+        return this.velocidade;
+    }
+
+    @Override
+    public int getChanceAtaqueExtra() {
+        return this.velocidade;
+    }
+
+    @Override
+    public Monstro criarCopiaFortalecida(double fatorDificuldade) {
+        int novaVida = (int) (this.getPontosDeVidaTotal() * fatorDificuldade);
+        int novaForca = (int) (this.getForca() * fatorDificuldade);
+        int novoXp = (int) (this.getXpConcedido() * fatorDificuldade);
+        Corredor copia = new Corredor(novaVida, novaForca, novoXp, this.velocidade);
+        copia.setAcoes(this.acoes); 
+        return copia;
+    }
+
+    @Override
+    public InterfaceItem droparLoot() {
+        System.out.println("Verificando os despojos de " + getNome() + "...");
+        if (LISTA_POSSIVEIS_DROPS.isEmpty()) {
+            System.out.println(getNome() + " não tinha nada de valor.");
+            return null;
+        }
+        // Usa a lista estática para o sorteio
+        Class<? extends Item>classeSorteada = GerenciadorDeLoot.sortearItem(LISTA_POSSIVEIS_DROPS);
+
+        if (classeSorteada != null) {
+            try{ // Declara uma nova instância da classe 
+                InterfaceItem itemInstanciado = classeSorteada.getDeclaredConstructor().newInstance();
+                System.out.printf("%s deixou cair %s!\n", this.getNome(), itemInstanciado.getNome());
+                return itemInstanciado;
+            } catch (Exception e) {
+                System.err.println("Erro crítico: Falha ao instanciar loot " + classeSorteada.getName());
+                e.printStackTrace();
+                return null;
+            }
+        } else {
+            System.out.println("Nenhum item foi encontrado.");
+            return null;
+        }
+    }
+
+    @Override
+    public Arma largaArma(float sorteDoJogador) {
+         System.out.println(this.getNome() + " foi derrotado!");
+
+         if (LISTA_POSSIVEIS_ARMAS.isEmpty()) {
+             System.out.printf("%s não tinha armas para deixar cair.\n", this.getNome());
+             return null;
+         }
+         if(sorteDoJogador <= 0.15) {
+            System.out.printf("Sorte baixa... %s não deixou cair nada.\n", this.getNome());
+            return null;
+         }
+         // Usa a lista filtrada para sortear com sorte
+         Class<? extends Arma> classeDaArma = GerenciadorDeLoot.sortearArmaComSorte(LISTA_POSSIVEIS_ARMAS, sorteDoJogador);
+
+         if (classeDaArma != null) {
+            try{ // Instancia uma nova versão da arma 
+                Arma armaInstanciada = classeDaArma.getDeclaredConstructor().newInstance();
+                System.out.printf("%s deixou cair %s!\n", this.getNome(), armaInstanciada.getNome());
+                return armaInstanciada;
+            } catch (Exception e) {
+                System.err.println("Erro crítico: Falha ao instanciar arma " + classeDaArma.getName());
+                e.printStackTrace();
+                return null;
+            }
+         } else {
+            System.out.printf("%s não deixou cair nada.\n", this.getNome());
+        }
+        return null;
+    }
+
+}
